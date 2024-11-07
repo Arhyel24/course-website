@@ -1,10 +1,8 @@
 import bcryptjs from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import GoogleProvider from "next-auth/providers/google";
-import connectToDb from "@/utils/connectDatabase";
 import { SessionStrategy } from "next-auth";
-import User from "@/models/userModel";
-import { verifyPassword } from "./bcryptconfig";
+import connectToDb from "./connectDataBase";
+import User from "@/app/models/userModel";
 
 const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
