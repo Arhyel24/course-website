@@ -33,8 +33,8 @@ export default async function CourseSidebar({
       <div className="flex w-full flex-col">
         {course.chapter.map((chapter) => (
           <CourseSidebarItem
-            key={chapter.id}
-            id={chapter.id}
+            key={chapter.id.toString()}
+            id={chapter.id.toString()}
             label={chapter.title}
             courseId={course.id}
           />
