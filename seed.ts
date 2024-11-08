@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Course from "./app/models/Course";
+import { Course } from "./app/models/Course";
 import connectToDb from "./lib/connectDataBase";
 
 // Function to create a course with chapters
