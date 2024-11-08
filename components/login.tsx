@@ -5,6 +5,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
 import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
+import Course from "@/app/models/Course";
+import mongoose from "mongoose";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -12,6 +14,42 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const setcourse = async () => {
+    const newCourse = new Course({
+      title: "Introduction to Programming",
+      description: "A comprehensive course on programming fundamentals.",
+      imageUrl: "http://example.com/image.png",
+      chapter: [
+        {
+          id: new mongoose.Types.ObjectId(), // Generate a new ObjectId for each chapter
+          title: "Chapter 1: Basics of Programming",
+          description:
+            "Learn the basics of programming, including variables and data types.",
+          videoUrl: "http://example.com/chapter1.mp4",
+        },
+        {
+          id: new mongoose.Types.ObjectId(),
+          title: "Chapter 2: Control Structures",
+          description:
+            "Understand control structures like loops and conditionals.",
+          videoUrl: "http://example.com/chapter2.mp4",
+        },
+        {
+          id: new mongoose.Types.ObjectId(),
+          title: "Chapter 3: Functions and Scope",
+          description: "Dive into functions and variable scope in programming.",
+          videoUrl: "http://example.com/chapter3.mp4",
+        },
+      ],
+    });
+
+    const t = await newCourse.save();
+
+    console.log(t);
+  };
+
+  setcourse();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -26,20 +64,6 @@ const LoginForm = () => {
       const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
       if (!emailRegex.test(email)) {
         setError("Invalid email address");
-        setLoading(false);
-        return;
-      }
-
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
-      if (!passwordRegex.test(password)) {
-        setError(
-          [
-            "Password must be at least 8 characters long",
-            "and contain at least one uppercase letter,",
-            "one lowercase letter, and one special character.",
-          ].join("\n")
-        );
-
         setLoading(false);
         return;
       }
@@ -67,7 +91,7 @@ const LoginForm = () => {
     }
   };
   return (
-    <div className="relative min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="relative min-h-screen flex items-center justify-center">
       <div className="absolute inset-0 bg-cover bg-center background-pattern"></div>
       <div className="relative z-10 p-8 bg-white rounded-lg shadow-lg max-w-sm mx-auto w-full">
         <h1 className="text-2xl text-center font-semibold mb-2">
@@ -102,10 +126,10 @@ const LoginForm = () => {
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex items-center text-center justify-center"
           >
             {loading ? (
-              <>
+              <div className="flex gap-2 justify-center items-center">
                 <Spinner aria-label="Small spinner example" size="sm" />
                 Logging In...
-              </>
+              </div>
             ) : (
               "Login"
             )}
@@ -117,24 +141,6 @@ const LoginForm = () => {
               className="text-blue-500 hover:underline"
             >
               Reset Here
-            </a>
-          </p>
-          <p className="text-center mt-4">Or Log In With</p>
-          <div className="flex justify-around mt-4">
-            <a href="#" className="text-gray-500 hover:text-gray-700">
-              <FaGoogle size={24} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-gray-700">
-              <FaFacebookF size={24} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-gray-700">
-              <FaEnvelope size={24} />
-            </a>
-          </div>
-          <p className="mt-4 text-center text-gray-600">
-            Don't have an account?{" "}
-            <a href="/signup" className="text-blue-500 hover:underline">
-              Sign Up Here
             </a>
           </p>
         </form>

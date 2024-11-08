@@ -16,7 +16,7 @@ export interface ICourse extends Document {
   title: string;
   description?: string | null;
   imageUrl?: string | null;
-  chapter: IChapter;
+  chapter: IChapter[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -35,7 +35,7 @@ const courseSchema = new Schema<ICourse>(
     title: { type: String, required: true },
     description: { type: String, default: DEFAULT_NULL },
     imageUrl: { type: String, default: DEFAULT_NULL },
-    chapter: chapterSchema,
+    chapter: { type: [chapterSchema], required: true },
   },
   {
     timestamps: true,
@@ -43,6 +43,8 @@ const courseSchema = new Schema<ICourse>(
 );
 
 // Model export
+
+console.log(mongoose.models);
 const Course =
   mongoose.models.Course || mongoose.model<ICourse>("Course", courseSchema);
 

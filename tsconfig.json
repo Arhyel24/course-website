@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    "allowUnusedLabels": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "module": "esnext",
