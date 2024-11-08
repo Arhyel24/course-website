@@ -2,9 +2,9 @@
 
 const nextConfig = {
   /* config options here */
-  // experimental: {
-  //   serverComponentsExternalPackages: ["mongoose"],
-  // },
+  experimental: {
+    serverComponentsExternalPackages: ["mongoose"],
+  },
   images: {
     remotePatterns: [
       {
