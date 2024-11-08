@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import CourseNavbar from "./_components/course-navbar";
 import CourseSidebar from "./_components/course-sidebar";
-import Course from "@/app/models/Course";
+import { Course } from "@/app/models/Course";
 
 export default async function CourseLayout({
   children,

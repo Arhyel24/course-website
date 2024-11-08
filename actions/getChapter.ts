@@ -1,4 +1,4 @@
-import Course, { IChapter } from "@/app/models/Course";
+import { Course, IChapter } from "@/app/models/Course";
 import connectToDb from "@/lib/connectDataBase";
 
 type GetChapterArgs = {
@@ -19,7 +19,7 @@ export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
       };
     }
 
-    const chapters = course.chapter;
+    const chapters = course.chapters;
 
     const index = chapters.findIndex(
       (chap: IChapter) => chap.id.toString() === chapterId
