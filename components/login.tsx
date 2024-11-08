@@ -4,8 +4,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
-import Course from "@/app/models/Course";
-import mongoose from "mongoose";
+import { Course } from "@/app/models/Course";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
