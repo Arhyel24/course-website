@@ -20,8 +20,6 @@ export default function CourseCard({
   title,
   imageUrl,
   chaptersLength,
-  price,
-  progress,
   category,
 }: CourseCardProps) {
   return (

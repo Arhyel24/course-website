@@ -4,7 +4,6 @@ import { HiInformationCircle } from "react-icons/hi";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
-import { FaGoogle, FaFacebookF, FaEnvelope } from "react-icons/fa";
 import Course from "@/app/models/Course";
 import mongoose from "mongoose";
 
@@ -88,6 +87,7 @@ const LoginForm = () => {
       setTimeout(() => {
         setError("");
       }, 5000);
+      console.error(error);
     }
   };
   return (

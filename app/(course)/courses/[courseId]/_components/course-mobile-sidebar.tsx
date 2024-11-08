@@ -1,9 +1,12 @@
 import { MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import CourseSidebar from "./course-sidebar";
-import { Course } from "@/actions/get-courses";
+import { ICourse } from "@/app/models/Course";
 
-type CourseMobileSidebarProps = {};
+type CourseMobileSidebarProps = {
+  course: ICourse;
+  progressCount: number;
+};
 
 export default function CourseMobileSidebar({
   course,

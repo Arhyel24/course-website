@@ -43,7 +43,6 @@ const authOptions = {
           if (!user) {
             return null;
           }
-          const salt = await bcryptjs.genSalt(10);
 
           const isPasswordValid = await bcryptjs.compare(
             password,
@@ -56,7 +55,7 @@ const authOptions = {
 
           return user;
         } catch (error) {
-          console.log("Error occurred in auth");
+          console.log("Error occurred in auth", error);
           return null;
         }
       },

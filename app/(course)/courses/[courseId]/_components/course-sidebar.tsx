@@ -1,8 +1,12 @@
 import { redirect } from "next/navigation";
 import CourseSidebarItem from "./course-sidebar-item";
 import { CourseProgress } from "@/components/course-progress";
+import { ICourse } from "@/app/models/Course";
 
-type CourseSidebarProps = {};
+type CourseSidebarProps = {
+  course: ICourse;
+  progressCount: number;
+};
 
 export default async function CourseSidebar({
   course,
@@ -27,14 +31,12 @@ export default async function CourseSidebar({
         ) : null}
       </div>
       <div className="flex w-full flex-col">
-        {course.chapters.map((chapter) => (
+        {course.chapter.map((chapter) => (
           <CourseSidebarItem
             key={chapter.id}
             id={chapter.id}
             label={chapter.title}
-            isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!chapter.isFree && !purchase}
           />
         ))}
       </div>

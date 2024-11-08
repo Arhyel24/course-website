@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ImageKitProvider, IKImage, IKUpload } from "imagekitio-next";
+import { ImageKitProvider } from "imagekitio-next";
 
 const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
@@ -19,7 +19,7 @@ const authenticator = async () => {
     const { signature, expire, token } = data;
     return { signature, expire, token };
   } catch (error) {
-    throw new Error(`Authentication request failed: ${error.message}`);
+    throw new Error(`Authentication request failed: ${error}`);
   }
 };
 

@@ -1,7 +1,8 @@
+import { ICourse } from "@/app/models/Course";
 import CourseMobileSidebar from "./course-mobile-sidebar";
 import { NavbarRoutes } from "@/components/navbar-routes";
 
-type CourseNavbarProps = {};
+type CourseNavbarProps = { course: ICourse; progressCount: number };
 
 export default function CourseNavbar({
   course,
