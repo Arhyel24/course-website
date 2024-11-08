@@ -6,6 +6,7 @@ import connectToDb from "./lib/connectDataBase";
 const createCourseWithChapters = async () => {
   const newCourse = new Course({
     title: "Introduction to Programming",
+
     description: "A comprehensive course on programming fundamentals.",
     imageUrl: "http://example.com/image.png",
     chapter: [
