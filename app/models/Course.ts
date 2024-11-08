@@ -1,24 +1,49 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const courseSchema = new mongoose.Schema(
+// Default values
+const DEFAULT_NULL = null;
+
+// Chapter interface
+export interface IChapter {
+  id: mongoose.Types.ObjectId;
+  title: string;
+  description?: string | null;
+  videoUrl?: string | null;
+}
+
+// Course interface
+export interface ICourse extends Document {
+  title: string;
+  description?: string | null;
+  imageUrl?: string | null;
+  chapter: IChapter;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+// Chapter schema definition
+const chapterSchema = new Schema<IChapter>({
+  id: { type: Schema.Types.ObjectId, required: true },
+  title: { type: String, required: true },
+  description: { type: String, default: DEFAULT_NULL },
+  videoUrl: { type: String, default: DEFAULT_NULL },
+});
+
+// Course schema definition
+const courseSchema = new Schema<ICourse>(
   {
     title: { type: String, required: true },
-    description: { type: String, default: null },
-    imageUrl: { type: String, default: null },
-    chapter: {
-      id: { type: mongoose.Schema.Types.ObjectId, required: true },
-      title: { type: String, required: true },
-      description: { type: String, default: null },
-      videoUrl: { type: String, default: null },
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    description: { type: String, default: DEFAULT_NULL },
+    imageUrl: { type: String, default: DEFAULT_NULL },
+    chapter: chapterSchema,
   },
   {
     timestamps: true,
   }
 );
 
-const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
+// Model export
+const Course =
+  mongoose.models.Course || mongoose.model<ICourse>("Course", courseSchema);
 
 export default Course;
