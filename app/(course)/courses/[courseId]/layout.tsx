@@ -23,7 +23,7 @@ export default async function CourseLayout({
     return redirect("/");
   }
 
-  const progressCount = course.progress;
+  const progressCount = 60;
 
   return (
     <div className="h-full">
