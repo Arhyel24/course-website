@@ -1,11 +1,12 @@
 import { CheckCircle, Clock } from "lucide-react";
 import { InfoCard } from "./ui/info-card";
 import CoursesList from "./ui/course-list";
-import { getCourses, typeCourse } from "@/actions/get-courses";
+import { getCourses } from "@/actions/get-courses";
+import { ICourse } from "@/app/models/Course";
 
 export default async function Dashboard() {
-  const coursesInProgress: typeCourse[] = await getCourses();
-  const completedCourses: typeCourse[] = [];
+  const coursesInProgress: ICourse[] = await getCourses();
+  const completedCourses: ICourse[] = [];
 
   return (
     <div className="space-y-4 p-6">
