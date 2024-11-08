@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import { getChapter } from "@/actions/getChapter";
 import YouTube from "react-youtube";
-import { FormEvent } from "react";
 
 export default async function ChapterDetails({
   params,

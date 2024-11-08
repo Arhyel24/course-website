@@ -98,7 +98,7 @@ const LoginForm = () => {
           Welcome back!
         </h1>
         <p className="mb-4 text-gray-600 text-center">
-          We're really happy to see you again!
+          We are really happy to see you again!
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
