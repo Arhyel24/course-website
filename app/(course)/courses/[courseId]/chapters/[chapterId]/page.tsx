@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { Preview } from "@/components/preview";
-import { YouTubeEmbed } from "@next/third-parties/google";
 import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import { getChapter } from "@/actions/getChapter";
+import YouTube from "react-youtube";
 
 export default async function ChapterDetails({
   params,
@@ -24,11 +24,23 @@ export default async function ChapterDetails({
     return redirect("/");
   }
 
+  const opts = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
+  function onReady(event: any) {
+    event.target.pauseVideo();
+  }
+
   return (
     <div>
       <div className="mx-auto flex max-w-4xl flex-col pb-20">
         <div className="p-4">
-          <YouTubeEmbed videoid={chapter.videoUrl} height={400} width={720} />
+          <YouTube videoId="sTnm5jvjgjM" opts={opts} onReady={onReady} />
         </div>
 
         <div>
