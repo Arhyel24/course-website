@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Model, Schema } from "mongoose";
 
 // Default values
 const DEFAULT_NULL = null;
@@ -41,9 +41,9 @@ const courseSchema = new Schema<ICourse>(
 );
 
 // Model export
-const Course =
-  mongoose.models.Course || mongoose.model<ICourse>("Course", courseSchema);
-const Chapter =
-  mongoose.models.Chapter || mongoose.model<IChapter>("Chapter", chapterSchema);
+const Course: Model<ICourse> =
+  mongoose.models.Course || mongoose.model("Course", courseSchema);
+const Chapter: Model<IChapter> =
+  mongoose.models.Chapter || mongoose.model("Chapter", chapterSchema);
 
 export { Course, Chapter };
