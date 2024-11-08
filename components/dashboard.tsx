@@ -4,7 +4,7 @@ import CoursesList from "./ui/course-list";
 import { getCourses, typeCourse } from "@/actions/get-courses";
 
 export default async function Dashboard() {
-  const coursesInProgress: typeCourse[] = getCourses();
+  const coursesInProgress: typeCourse[] = await getCourses();
   const completedCourses: typeCourse[] = [];
 
   return (

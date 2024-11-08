@@ -44,18 +44,6 @@ export default function CourseCard({
               </span>
             </div>
           </div>
-
-          {progress !== null ? (
-            {/* <CourseProgress
-              variant={progress === 100 ? "success" : "default"}
-              size="sm"
-              value={progress}
-            />
-          ) : (
-            <p className="text-md font-medium text-slate-700 md:text-sm">
-              {formatPrice(price)}
-            </p> */}
-          )}
         </div>
       </div>
     </Link>
