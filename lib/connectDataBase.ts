@@ -1,13 +1,30 @@
-// utils/connectToDb.ts
-import mongoose from "mongoose";
-const MONGODB_URI = process.env.MONGODB_URI as string;
+import mongoose from 'mongoose';
+
+let isConnected = false;
 
 const connectToDb = async () => {
+  mongoose.set('strictQuery', true);
+
+  if (isConnected) {
+    console.log('Using existing database connection');
+    return;
+  }
+
   try {
-    await mongoose.connect(MONGODB_URI);
-    // console.log("Connected to the Database");
+    await mongoose.connect(process.env.MONGODB_URI!, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      family: 4
+    });
+
+    isConnected = true;
+    console.log('New database connection established');
   } catch (error) {
-    console.log("Error connecting DB: ", error);
+    console.error('Database connection error:', error);
+    
+    // Implement exponential backoff retry mechanism
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    return connectToDb();
   }
 };
 

@@ -4,22 +4,11 @@ export type User = {
   username: string;
   email: string;
   password: string;
-  messages: {
-    title: string;
-    messages: {
-      sender: string;
-      text: string;
-      time: string;
-    }[];
-  }[];
+  image: string;
 };
 
 const userSchema: Schema = new Schema({
-  username: {
-    type: String,
-    required: [true, "Username is required"],
-    unique: [true, "Username already exists"],
-  },
+  username: String,
   email: {
     type: String,
     required: [true, "Email is required"],
@@ -29,6 +18,7 @@ const userSchema: Schema = new Schema({
     type: String,
     required: [true, "Password is required"],
   },
+  image: String,
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

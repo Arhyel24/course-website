@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="h-full">
-          <main className="h-full pt-[80px] md:pl-56">
+          <main className="h-full md:pl-56">
             <MyImageKitProvider>{children}</MyImageKitProvider>
           </main>
         </div>

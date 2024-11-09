@@ -76,6 +76,7 @@ const authOptions = {
       const dbUser = await User.findOne({ email });
 
       session.user.name = dbUser.username || "undefined";
+      session.user.image = dbUser.image || "";
 
       return session;
     },

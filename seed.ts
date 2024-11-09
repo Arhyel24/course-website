@@ -11,21 +11,18 @@ const createCourseWithChapters = async () => {
     imageUrl: "http://example.com/image.png",
     chapter: [
       {
-        id: new mongoose.Types.ObjectId(), // Generate a new ObjectId for each chapter
         title: "Chapter 1: Basics of Programming",
         description:
           "Learn the basics of programming, including variables and data types.",
         videoUrl: "http://example.com/chapter1.mp4",
       },
       {
-        id: new mongoose.Types.ObjectId(),
         title: "Chapter 2: Control Structures",
         description:
           "Understand control structures like loops and conditionals.",
         videoUrl: "http://example.com/chapter2.mp4",
       },
       {
-        id: new mongoose.Types.ObjectId(),
         title: "Chapter 3: Functions and Scope",
         description: "Dive into functions and variable scope in programming.",
         videoUrl: "http://example.com/chapter3.mp4",
