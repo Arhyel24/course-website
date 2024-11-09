@@ -5,7 +5,7 @@ export async function getCourses(): Promise<ICourse[]> {
   try {
     await connectToDb();
     const courses = await Course.find();
-    console.log(courses);
+    // console.log(courses);
     return courses;
   } catch (error) {
     console.error("Error fetching courses:", error);

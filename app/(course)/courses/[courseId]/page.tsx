@@ -5,6 +5,9 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const id = params.courseId;
   const course = await Course.findOne({ id });
 
+  // console.log(id);
+  // console.log(course);
+
   if (!course) {
     return redirect("/");
   }

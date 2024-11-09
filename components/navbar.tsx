@@ -16,7 +16,7 @@ export function NavBar() {
 
   return (
     <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar.Brand href="/">
         <Image
           width={6}
           height={6}

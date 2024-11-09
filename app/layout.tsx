@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-import MyImageKitProvider from "./providers/ImageKitProvider";
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -31,9 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="h-full">
-          <main className="h-full md:pl-56">
-            <MyImageKitProvider>{children}</MyImageKitProvider>
-          </main>
+          <main className="h-full md:pl-56">{children}</main>
         </div>
       </body>
     </html>

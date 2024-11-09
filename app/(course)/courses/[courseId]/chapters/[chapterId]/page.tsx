@@ -3,7 +3,6 @@ import { Preview } from "@/components/preview";
 import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import { getChapter } from "@/actions/getChapter";
-import { SyntheticEvent } from "react";
 import { IKVideo } from "imagekitio-next";
 
 export default async function ChapterDetails({
@@ -20,6 +19,10 @@ export default async function ChapterDetails({
   const { chapter, course, nextChapter } = await getChapter({
     ...params,
   });
+
+  // console.log(chapter);
+  // console.log(course);
+  // console.log(nextChapter);
 
   if (!chapter || !course) {
     return redirect("/");

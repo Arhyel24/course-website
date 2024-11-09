@@ -17,6 +17,8 @@ export default async function CourseLayout({
   }
 
   const id = params.courseId;
+  // console.log(id);
+
   const course = await Course.findOne({ id });
 
   if (!course) {
@@ -35,7 +37,7 @@ export default async function CourseLayout({
         <CourseSidebar course={course} progressCount={progressCount} />
       </div>
 
-      <main className="h-full pt-20 md:pl-80">{children}</main>
+      <main className="h-full md:pl-80">{children}</main>
     </div>
   );
 }

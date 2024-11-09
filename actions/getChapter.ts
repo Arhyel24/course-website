@@ -19,11 +19,15 @@ export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
       };
     }
 
+    console.log(chapterId);
+
     const chapters = course.chapters;
 
     const index = chapters.findIndex(
       (chap: IChapter) => chap.id.toString() === chapterId
     );
+
+    console.log(index);
 
     if (index === -1) {
       return {
