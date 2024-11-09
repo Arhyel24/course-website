@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import { getChapter } from "@/actions/getChapter";
 import { SyntheticEvent } from "react";
-import YouTube, { YouTubeProps } from "react-youtube";
 
 export default async function ChapterDetails({
   params,
@@ -25,23 +24,15 @@ export default async function ChapterDetails({
     return redirect("/");
   }
 
-  const opts: YouTubeProps["opts"] = {
-    height: "390",
-    width: "640",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
-
-  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
-    event.target.pauseVideo();
-  };
-
   return (
     <div>
       <div className="mx-auto flex max-w-4xl flex-col pb-20">
         <div className="p-4">
-          <YouTube videoId="sTnm5jvjgjM" opts={opts} onReady={onPlayerReady} />
+          <IKVideo
+    path={sample-video.mp4}
+    transformation={[{ height: 200, width: 600}]}
+    controls={true}
+  />
         </div>
 
         <div>
