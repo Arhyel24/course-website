@@ -29,11 +29,11 @@ export default async function ChapterDetails({
     <div>
       <div className="mx-auto flex max-w-4xl flex-col pb-20">
         <div className="p-4">
-          <IKVideo
+          {/* <IKVideo
             path={chapter.videoUrl?.toString()}
             transformation={[{ height: "200", width: "600" }]}
             controls={true}
-          />
+          /> */}
         </div>
 
         <div>
