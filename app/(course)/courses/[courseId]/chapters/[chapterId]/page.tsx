@@ -30,7 +30,7 @@ export default async function ChapterDetails({
       <div className="mx-auto flex max-w-4xl flex-col pb-20">
         <div className="p-4">
           <IKVideo
-    path={sample-video.mp4}
+    path={chapter.videoUrl}
     transformation={[{ height: 200, width: 600}]}
     controls={true}
   />
