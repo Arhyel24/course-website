@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IKImage } from "imagekitio-next";
 import { BookOpenIcon } from "lucide-react";
 import { IconBadge } from "./icon-badge";
 // import { formatPrice } from "@/lib/format";
@@ -26,7 +27,8 @@ export default function CourseCard({
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden rounded-md">
-          <Image fill className="object-cover" alt={title} src={imageUrl} />
+         <IKImage path="default-image.jpg" width={400} height={400} alt="Alt text" />
+      
         </div>
 
         <div className="flex flex-col pt-2">
