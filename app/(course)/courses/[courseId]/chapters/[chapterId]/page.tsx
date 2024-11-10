@@ -2,8 +2,7 @@ import { redirect } from "next/navigation";
 import { Preview } from "@/components/preview";
 import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
-import { getChapter } from "@/actions/getChapter";
-import { IKVideo } from "imagekitio-next";
+import getChapter from "@/actions/getChapter";
 
 export default async function ChapterDetails({
   params,

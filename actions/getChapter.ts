@@ -1,4 +1,4 @@
-import { Course, IChapter } from "@/app/models/Course";
+import { Course, IChapter, ICourse } from "@/app/models/Course";
 import connectToDb from "@/lib/connectDataBase";
 
 type GetChapterArgs = {
@@ -6,10 +6,22 @@ type GetChapterArgs = {
   chapterId: string;
 };
 
-export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
+// interface GetChapterResponse {
+//   chapter: IChapter | null;
+//   course: ICourse | null;
+//   nextChapter: string | null;
+// }
+
+export default async function getChapter({
+  courseId,
+  chapterId,
+}: GetChapterArgs) {
   try {
+    // Connect to the database
     await connectToDb();
-    const course = await Course.findOne({ _id: courseId });
+
+    // Find the course and populate chapters
+    const course = await Course.findById(courseId).populate("chapters");
 
     if (!course) {
       return {
@@ -19,17 +31,12 @@ export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
       };
     }
 
-    console.log(chapterId);
-
-    const chapters = course.chapters;
-
-    const index = chapters.findIndex(
-      (chap: IChapter) => chap.id.toString() === chapterId
+    // Find the chapter index
+    const chapterIndex = course.chapters.findIndex(
+      (chap) => chap._id.toString() === chapterId
     );
 
-    console.log(index);
-
-    if (index === -1) {
+    if (chapterIndex === -1) {
       return {
         chapter: null,
         course,
@@ -37,9 +44,12 @@ export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
       };
     }
 
-    const chapter = chapters[index];
+    const chapter = course.chapters[chapterIndex];
+
     const nextChapter =
-      index + 1 < chapters.length ? chapters[index + 1].id : null;
+      chapterIndex + 1 < course.chapters.length
+        ? course.chapters[chapterIndex + 1]._id.toString()
+        : null;
 
     return {
       chapter,
@@ -47,7 +57,7 @@ export async function getChapter({ courseId, chapterId }: GetChapterArgs) {
       nextChapter,
     };
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching chapter:", error);
     return {
       chapter: null,
       course: null,
