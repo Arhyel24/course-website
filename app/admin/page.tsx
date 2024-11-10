@@ -4,22 +4,36 @@ import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
 import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MyFooter } from "@/components/footer";
 import toast from "react-hot-toast";
 import axios from "axios";
-import User from "../models/userModel";
+import User, { IUser } from "../models/userModel";
 
-export default async function Admin() {
+export default function Admin() {
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
+  const [users, setUsers] = useState<IUser[]>([]);
 
   function onCloseUserModal() {
     setEnrolUser(false);
     setEmail("");
   }
-  4;
+
+  async function getUsers() {
+    try {
+      const response = await User.find();
+      setUsers(response);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      toast.error("Failed to fetch users");
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   async function signUp() {
     const randomSuffix = Math.floor(Math.random() * 10000);
@@ -28,7 +42,7 @@ export default async function Admin() {
     const password = "12345678"; // Fixed password
 
     try {
-      const response = await axios.post("/api/signup", {
+      await axios.post("/api/signup", {
         username,
         email,
         password,
@@ -36,15 +50,13 @@ export default async function Admin() {
 
       toast.success("User Enrolled successfully!");
       setEnrolUser(false);
-
+      getUsers();
       // console.log('Sign-up successful:', response.data);
     } catch (error) {
       console.error("Error during sign-up:", error);
       toast.error("Failed to enrol user");
     }
   }
-
-  const users = await User.find();
 
   // const users = [
   //   {
