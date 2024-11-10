@@ -29,6 +29,16 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "youtube.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "example.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "storage.googleapis.com",
         port: "",
       },
