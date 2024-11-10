@@ -2,7 +2,14 @@
 
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import {
+  Button,
+  Checkbox,
+  Label,
+  Modal,
+  TextInput,
+  FileInput,
+} from "flowbite-react";
 import { useState } from "react";
 
 export function NavBar() {
@@ -59,51 +66,71 @@ export function NavBar() {
         <Modal.Header />
         <Modal.Body>
           <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Sign in to our platform
-            </h3>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
-              </div>
-              <TextInput
-                id="email"
-                placeholder="name@company.com"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password" value="Your password" />
-              </div>
-              <TextInput id="password" type="password" required />
-            </div>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember">Remember me</Label>
-              </div>
-              <a
-                href="#"
-                className="text-sm text-cyan-700 hover:underline dark:text-cyan-500"
+            <div className="flex w-full items-center justify-center">
+              <Label
+                htmlFor="dropzone-file"
+                className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
               >
-                Lost Password?
-              </a>
+                <div className="flex flex-col items-center justify-center pb-6 pt-5">
+                  <svg
+                    className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Click to upload</span> or
+                    drag and drop
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
+                </div>
+                <FileInput id="dropzone-file" className="hidden" />
+              </Label>
             </div>
-            <div className="w-full">
-              <Button>Log in to your account</Button>
-            </div>
-            <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
-              Not registered?&nbsp;
-              <a
-                href="#"
-                className="text-cyan-700 hover:underline dark:text-cyan-500"
-              >
-                Create account
-              </a>
-            </div>
+            <form className="flex max-w-md flex-col gap-4">
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="username" value="Username" />
+                </div>
+                <TextInput
+                  id="username"
+                  type="text"
+                  placeholder="Username"
+                  required
+                  shadow
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="password2" value="Your password" />
+                </div>
+                <TextInput id="password2" type="password" required shadow />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="repeat-password" value="Repeat password" />
+                </div>
+                <TextInput
+                  id="repeat-password"
+                  type="password"
+                  required
+                  shadow
+                />
+              </div>
+
+              <Button type="submit">Update details</Button>
+            </form>
           </div>
         </Modal.Body>
       </Modal>

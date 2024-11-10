@@ -6,6 +6,8 @@ import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
 import { useState } from "react";
 import { MyFooter } from "@/components/footer";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function Admin() {
   const [tab, setTab] = useState("table");
@@ -15,6 +17,32 @@ export default function Admin() {
   function onCloseUserModal() {
     setEnrolUser(false);
     setEmail("");
+  }
+
+  async function signUp() {
+    const randomSuffix = Math.floor(Math.random() * 10000);
+    const username = `user${randomSuffix}`;
+
+    const password = "12345678"; // Fixed password
+
+    try {
+      const response = await axios.post("/api/sign-up", {
+        username,
+        email,
+        password,
+      });
+
+      toast.success("User Enrolled successfully!");
+      setEnrolUser(false);
+
+      // console.log('Sign-up successful:', response.data);
+    } catch (error: any) {
+      console.error(
+        "Error during sign-up:",
+        error.response ? error.response.data : error.message
+      );
+      toast.error("Failed to enrol user");
+    }
   }
 
   const users = [
@@ -96,7 +124,7 @@ export default function Admin() {
             </h3>
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
+                <Label htmlFor="email" value="Enter user email" />
               </div>
               <TextInput
                 id="email"
@@ -107,7 +135,7 @@ export default function Admin() {
               />
             </div>
             <div className="w-full">
-              <Button>Enrol</Button>
+              <Button onClick={signUp}>Enrol</Button>
             </div>
           </div>
         </Modal.Body>

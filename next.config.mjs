@@ -19,6 +19,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.w3.org",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "example.com",
         port: "",
       },
