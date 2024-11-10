@@ -26,7 +26,7 @@ export default function Admin() {
     const password = "12345678"; // Fixed password
 
     try {
-      const response = await axios.post("/api/sign-up", {
+      const response = await axios.post("/api/signup", {
         username,
         email,
         password,
