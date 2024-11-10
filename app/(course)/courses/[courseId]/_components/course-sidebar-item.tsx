@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 type CourseSidebarItemProps = {
   id: string;
-  label: string;
+  label: string | null;
   courseId: string;
 };
 
