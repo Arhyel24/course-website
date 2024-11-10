@@ -5,7 +5,7 @@ import connectToDb from "@/lib/connectDataBase";
 import { Chapter, Course, IChapter } from "@/app/models/Course";
 
 type CourseSidebarProps = {
-  courseId: string; // Change to accept courseId
+  courseId: string;
   progressCount: number;
 };
 
@@ -26,7 +26,7 @@ async function fetchChapters(courseId: string) {
 }
 
 export default async function CourseSidebar({
-  courseId, // Accept courseId as a prop
+  courseId,
   progressCount,
 }: CourseSidebarProps) {
   const userId = "wazirina"; // Replace with actual user ID logic

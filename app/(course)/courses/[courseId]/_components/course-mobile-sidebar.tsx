@@ -19,7 +19,7 @@ export default function CourseMobileSidebar({
       </SheetTrigger>
 
       <SheetContent side="left" className="w-72 bg-white p-0">
-        <CourseSidebar course={course} progressCount={progressCount} />
+        <CourseSidebar courseId={course.id} progressCount={progressCount} />
       </SheetContent>
     </Sheet>
   );
