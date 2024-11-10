@@ -36,11 +36,8 @@ export default function Admin() {
       setEnrolUser(false);
 
       // console.log('Sign-up successful:', response.data);
-    } catch (error: any) {
-      console.error(
-        "Error during sign-up:",
-        error.response ? error.response.data : error.message
-      );
+    } catch (error) {
+      console.error("Error during sign-up:", error);
       toast.error("Failed to enrol user");
     }
   }
