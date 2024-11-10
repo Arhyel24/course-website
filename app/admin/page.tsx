@@ -6,9 +6,9 @@ import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
 import { useState } from "react";
 import { MyFooter } from "@/components/footer";
-import { User } from "@models/userModel";
 import toast from "react-hot-toast";
 import axios from "axios";
+import User from "../models/userModel";
 
 export default async function Admin() {
   const [tab, setTab] = useState("table");
@@ -19,6 +19,7 @@ export default async function Admin() {
     setEnrolUser(false);
     setEmail("");
   }
+  4;
 
   async function signUp() {
     const randomSuffix = Math.floor(Math.random() * 10000);
