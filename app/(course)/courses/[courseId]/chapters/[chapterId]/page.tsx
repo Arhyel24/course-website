@@ -43,7 +43,6 @@ export default async function ChapterDetails({
             <h2 className="mb-2 text-2xl font-semibold">{chapter.title}</h2>
 
             <CourseProgressButton
-              chapterId={params.chapterId}
               courseId={params.courseId}
               nextChapterId={nextChapter}
             />

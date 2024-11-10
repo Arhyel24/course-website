@@ -1,4 +1,4 @@
-import { Course, IChapter, ICourse } from "@/app/models/Course";
+import { Chapter, Course, IChapter, ICourse } from "@/app/models/Course";
 import connectToDb from "@/lib/connectDataBase";
 
 type GetChapterArgs = {
@@ -44,7 +44,9 @@ export default async function getChapter({
       };
     }
 
-    const chapter = course.chapters[chapterIndex];
+    const chapterI = course.chapters[chapterIndex];
+
+    const chapter = await Chapter.findById(chapterI);
 
     const nextChapter =
       chapterIndex + 1 < course.chapters.length

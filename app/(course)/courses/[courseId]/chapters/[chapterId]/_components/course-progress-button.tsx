@@ -8,13 +8,11 @@ import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 
 interface CourseProgressButtonProps {
-  chapterId: string;
   courseId: string;
-  nextChapterId?: string;
+  nextChapterId?: string | null;
 }
 
 export const CourseProgressButton = ({
-  chapterId,
   courseId,
   nextChapterId,
 }: CourseProgressButtonProps) => {
