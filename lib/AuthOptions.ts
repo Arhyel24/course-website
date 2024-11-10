@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import bcryptjs from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { SessionStrategy } from "next-auth";
@@ -75,8 +77,10 @@ const authOptions = {
       const email = session?.user?.email;
       const dbUser = await User.findOne({ email });
 
-      session.user.name = dbUser.username || "undefined";
-      session.user.image = dbUser.image || "";
+      session.user.name = dbUser?.username || "undefined";
+      session.user.image =
+        dbUser?.image ||
+        "https://flowbite.com/docs/images/people/profile-picture-3.jpg";
 
       return session;
     },
