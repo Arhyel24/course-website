@@ -9,7 +9,7 @@ export default function CoursesList({ items }) {
             key={course.id}
             id={course.id}
             title={course.title}
-            imageUrl={course.imageUrl!}
+            imageUrl={course.imageUrl}
             chaptersLength={course.chapters.length}
           />
         ))}

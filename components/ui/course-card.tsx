@@ -3,7 +3,7 @@ import { BookOpenIcon } from "lucide-react";
 import { IconBadge } from "./icon-badge";
 import Image from "next/image";
 
-const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
+// const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 
 type CourseCardProps = {
   id: string;
