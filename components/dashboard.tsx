@@ -15,6 +15,7 @@ export default async function Dashboard() {
           icon={Clock}
           label="In Progress"
           numberOfItems={coursesInProgress.length}
+          variant="default"
         />
 
         <InfoCard
