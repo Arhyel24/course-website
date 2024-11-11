@@ -10,19 +10,16 @@ export default function CoursesList({ items }) {
             id={course.id}
             title={course.title}
             imageUrl={course.imageUrl!}
-            price={course.price!}
-            progress={course.progress}
             chaptersLength={course.chapters.length}
-            category={course?.category?.name ?? ""}
           />
         ))}
       </div>
 
-      {items.length === 0 ? (
+      {items.length === 0 && (
         <div className="mt-10 text-center text-sm text-muted-foreground">
           No courses found!
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

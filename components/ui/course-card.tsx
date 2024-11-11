@@ -10,9 +10,6 @@ type CourseCardProps = {
   title: string;
   imageUrl: string;
   chaptersLength: number;
-  price: number;
-  progress: number | null;
-  category: string;
 };
 
 export default function CourseCard({
@@ -20,7 +17,6 @@ export default function CourseCard({
   title,
   imageUrl,
   chaptersLength,
-  category,
 }: CourseCardProps) {
   return (
     <Link href={`/courses/${id}`}>
@@ -33,7 +29,7 @@ export default function CourseCard({
           <div className="line-clamp-2 text-lg font-medium transition group-hover:text-primary md:text-base">
             {title}
           </div>
-          <p className="text-xs text-muted-foreground">{category}</p>
+          <p className="text-xs text-muted-foreground">Affiliate Marketing</p>
           <div className="my-3 flex items-center gap-x-1 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpenIcon} />
