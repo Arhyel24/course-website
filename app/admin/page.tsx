@@ -42,6 +42,13 @@ export default function Admin() {
     const password = "12345678"; // Fixed password
 
     try {
+      const res = await axios.post("/api/userexist", { email });
+
+      if (!res) {
+        toast.error("User already exist");
+        return;
+      }
+
       await axios.post("/api/signup", {
         username,
         email,

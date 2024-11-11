@@ -1,12 +1,10 @@
-// @ts-nocheck
-
 import bcryptjs from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SessionStrategy } from "next-auth";
+import { NextAuthOptions, SessionStrategy } from "next-auth";
 import connectToDb from "./connectDataBase";
-import User from "@/app/models/userModel";
+import User, { IUser } from "@/app/models/userModel";
 
-const authOptions = {
+const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     // GoogleProvider({
@@ -33,14 +31,21 @@ const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {},
-      async authorize(credentials) {
+      authorize: async (credentials) => {
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
+
         try {
           await connectToDb();
           const user = await User.findOne({ email });
+          // const user = {
+          //   id: "1",
+          //   username: "J Smith",
+          //   email: "jsmith@example.com",
+          //   password: "123456",
+          // };
 
           if (!user) {
             return null;
@@ -55,7 +60,14 @@ const authOptions = {
             return null;
           }
 
-          return user;
+          const userData = {
+            username: user.username,
+            image: user.email,
+            email: user.email,
+            id: user.id,
+          };
+
+          return userData;
         } catch (error) {
           console.log("Error occurred in auth", error);
           return null;
