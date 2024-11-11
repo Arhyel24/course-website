@@ -19,7 +19,7 @@ export default async function CourseLayout({
   const id = params.courseId;
   // console.log(id);
 
-  const course = await Course.findOne({ id }).populate("courses");
+  const course = await Course.findOne({ id }).populate("chapters");
 
   if (!course) {
     return redirect("/");

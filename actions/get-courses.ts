@@ -4,7 +4,7 @@ import { Course, ICourse } from "@/app/models/Course";
 export async function getCourses(): Promise<ICourse[]> {
   try {
     await connectToDb();
-    const courses = await Course.find().populate("courses");
+    const courses = await Course.find().populate("chapters");
     // console.log(courses);
     return courses;
   } catch (error) {
