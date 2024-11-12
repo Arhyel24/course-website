@@ -2,9 +2,9 @@
 
 const nextConfig = {
   /* config options here */
-  experimental: {
-    serverComponentsExternalPackages: ["mongoose"],
-  },
+  // experimental: {
+  //   serverComponentsExternalPackages: ["mongoose"],
+  // },
   images: {
     remotePatterns: [
       {
@@ -24,17 +24,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "example.com",
+        hostname: "i.ibb.co",
         port: "",
       },
       {
         protocol: "https",
         hostname: "youtube.com",
-        port: "",
-      },
-      {
-        protocol: "https",
-        hostname: "example.com",
         port: "",
       },
       {
