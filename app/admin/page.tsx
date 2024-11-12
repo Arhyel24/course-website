@@ -41,6 +41,7 @@ export default function Admin() {
       toast.error("Failed to fetch users");
     }
   }
+  
   useEffect(() => {
     getUsers();
   }, []);
@@ -95,7 +96,8 @@ export default function Admin() {
         return;
       }
       
-      await getUsers();
+      //await getUsers();
+      setUsers((prevValue)=> [...prevValue, signUpResponse.user])
 
       toast.success("User  enrolled successfully!");
       setRegistering(false);
