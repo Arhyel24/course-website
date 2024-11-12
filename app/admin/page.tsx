@@ -41,8 +41,8 @@ export default function Admin() {
       toast.error("Failed to fetch users");
     }
   }
-  useEffect(async () => {
-    await getUsers();
+  useEffect(() => {
+    getUsers();
   }, []);
 
   async function signUp() {
@@ -200,7 +200,7 @@ export default function Admin() {
               </div>
               <div className="w-full">
                 {registering ? <Button  disabled><Spinner color="info" aria-label="registering user" />
-      </Button>: <Button onClick={signUp}>Enrol</Button>}
+      Enrolling...</Button>: <Button onClick={signUp}>Enrol</Button>}
               </div>
             </div>
           </Modal.Body>
