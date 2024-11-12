@@ -14,7 +14,7 @@ export default function Admin() {
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
-  const [users, setUsers] = useState<IUser[]>([]);
+  //const [users, setUsers] = useState<IUser[]>([]);
   const [registering, setRegistering] = useState(false)
  
   function onCloseUserModal() {
@@ -22,8 +22,8 @@ export default function Admin() {
     setEmail("");
   }
   
-  const gusers: IUser[] = getUsers();
-  setUsers(gusers);
+  const users = getUsers();
+  //setUsers(gusers);
   /*async function getUsers() {
     try {
       const res = await fetch("/api/getallusers", { method: "GET" });
@@ -100,7 +100,7 @@ export default function Admin() {
       }
       
       //await getUsers();
-      setUsers((prevValue)=> [...prevValue, signUpResponse.user])
+      //setUsers((prevValue)=> [...prevValue, signUpResponse.user])
 
       toast.success("User  enrolled successfully!");
       setRegistering(false);
