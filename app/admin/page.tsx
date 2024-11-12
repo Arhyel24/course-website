@@ -22,7 +22,7 @@ export default function Admin() {
     setEmail("");
   }
   
-  const gusers = getUsers();
+  const gusers: IUser[] = getUsers();
   setUsers(gusers);
   /*async function getUsers() {
     try {
