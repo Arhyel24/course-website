@@ -1,30 +1,31 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 let isConnected = false;
 
-const connectToDb = async () => {
-  mongoose.set('strictQuery', true);
+const connectToDb = async (retries = 5) => {
+  mongoose.set("strictQuery", true);
 
   if (isConnected) {
-    console.log('Using existing database connection');
+    console.log("Using existing database connection");
     return;
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI!, {
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-      family: 4
-    });
+    await mongoose.connect(process.env.MONGODB_URI as string);
 
     isConnected = true;
-    console.log('New database connection established');
+    console.log("New database connection established");
   } catch (error) {
-    console.error('Database connection error:', error);
-    
-    // Implement exponential backoff retry mechanism
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    return connectToDb();
+    console.error("Database connection error:", error);
+
+    if (retries > 0) {
+      console.log(`Retrying connection... (${5 - retries + 1})`);
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait before retrying
+      return connectToDb(retries - 1); // Retry connection
+    } else {
+      console.error("Max retries reached. Could not connect to the database.");
+      throw new Error("Database connection failed after multiple attempts.");
+    }
   }
 };
 

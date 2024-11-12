@@ -9,19 +9,38 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 export function UserCard({ user }) {
   const [openModal, setOpenModal] = useState(false);
 
-  const deleteusero = () => {
-    toast.success("user deleted successfully");
-    setOpenModal(false);
+  const deleteUser = async () => {
+    try {
+      const response = await fetch("/api/deleteUser ", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: user.id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      const data = await response.json();
+      toast.success(data.message);
+      setOpenModal(false);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast.error("Failed to delete user");
+    }
   };
+
   return (
     <Card className="w-[300px]">
       <div className="flex justify-end px-4 pt-4"></div>
       <div className="flex flex-col items-center pb-6">
         <Image
-          alt="Bonnie image"
-          height="96"
+          alt={`${user.username}'s image`}
+          height={96}
           src={user.image}
-          width="96"
+          width={96}
           className="mb-3 rounded-full shadow-lg"
         />
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
@@ -34,8 +53,8 @@ export function UserCard({ user }) {
           <Button
             size="xs"
             color="failure"
-            onClick={() => setOpenModal(false)}
-            className="inline-flex items-center rounded-lg hover:bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 d dark:focus:ring-cyan-800"
+            onClick={() => setOpenModal(true)}
+            className="inline-flex items-center rounded-lg hover:bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:focus:ring-cyan-800"
           >
             Delete user
           </Button>
@@ -55,7 +74,7 @@ export function UserCard({ user }) {
               Are you sure you want to delete this user? {user.email}
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={deleteusero}>
+              <Button color="failure" onClick={deleteUser}>
                 {"Yes, I'm sure"}
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>

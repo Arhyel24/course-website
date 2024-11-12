@@ -4,7 +4,6 @@ import { HiInformationCircle } from "react-icons/hi";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
-import { Course } from "@/app/models/Course";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -12,39 +11,6 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const setcourse = async () => {
-    const newCourse = new Course({
-      title: "Introduction to Programming",
-      description: "A comprehensive course on programming fundamentals.",
-      imageUrl: "http://example.com/image.png",
-      chapter: [
-        {
-          title: "Chapter 1: Basics of Programming",
-          description:
-            "Learn the basics of programming, including variables and data types.",
-          videoUrl: "http://example.com/chapter1.mp4",
-        },
-        {
-          title: "Chapter 2: Control Structures",
-          description:
-            "Understand control structures like loops and conditionals.",
-          videoUrl: "http://example.com/chapter2.mp4",
-        },
-        {
-          title: "Chapter 3: Functions and Scope",
-          description: "Dive into functions and variable scope in programming.",
-          videoUrl: "http://example.com/chapter3.mp4",
-        },
-      ],
-    });
-
-    const t = await newCourse.save();
-
-    console.log(t);
-  };
-
-  setcourse();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();

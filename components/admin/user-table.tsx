@@ -1,28 +1,38 @@
 "use client";
 
-import { Table } from "flowbite-react";
-import { Button, Modal } from "flowbite-react";
+import { IUser } from "@/app/models/userModel";
+import { Table, Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-interface User {
-  username: string;
-  email: string;
-  image: string;
-}
-
 export function UsersTable({ users }) {
   const [openModal, setOpenModal] = useState(false);
-  const [deleteUser, setDeleteUser] = useState<User>({
-    username: "",
-    email: "",
-    image: "",
-  });
+  const [deleteUser, setDeleteUser] = useState<IUser | null>(null);
 
-  const deleteusero = () => {
-    toast.success("user deleted successfully");
-    setOpenModal(false);
+  const deleteUserHandler = async () => {
+    if (!deleteUser) return;
+
+    try {
+      const response = await fetch("/api/deleteUser ", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: deleteUser.email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      const data = await response.json();
+      toast.success(data.message);
+      setOpenModal(false);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast.error("Failed to delete user");
+    }
   };
 
   return (
@@ -37,27 +47,36 @@ export function UsersTable({ users }) {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {users.map((user: User) => (
-            <Table.Row key={user.username} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {user.username}
-              </Table.Cell>
-              <Table.Cell>{user.email}</Table.Cell>
-              <Table.Cell>21-01-2024</Table.Cell>
-              <Table.Cell>
-                <Button
-                  className="font-medium text-cyan-400 hover:underline dark:text-cyan-500"
-                  color="failure"
-                  onClick={() => {
-                    setDeleteUser(user);
-                    setOpenModal(true);
-                  }}
-                >
-                  Delete
-                </Button>
-              </Table.Cell>
+          {users.length > 0 ? (
+            users.map((user) => (
+              <Table.Row
+                key={user.id}
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+              >
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  {user.username}
+                </Table.Cell>
+                <Table.Cell>{user.email}</Table.Cell>
+                <Table.Cell>21-01-2024</Table.Cell>
+                <Table.Cell>
+                  <Button
+                    className="font-medium text-cyan-400 hover:underline dark:text-cyan-500"
+                    color="failure"
+                    onClick={() => {
+                      setDeleteUser(user);
+                      setOpenModal(true);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
+            ))
+          ) : (
+            <Table.Row className="bg-white dark:border-gray-700 text-center w-full dark:bg-gray-800">
+              <Table.Cell>No users enrolled yet!</Table.Cell>
             </Table.Row>
-          ))}
+          )}
         </Table.Body>
       </Table>
 
@@ -72,10 +91,10 @@ export function UsersTable({ users }) {
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this user? {deleteUser.email}
+              Are you sure you want to delete this user? {deleteUser?.email}
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={deleteusero}>
+              <Button color="failure" onClick={deleteUserHandler}>
                 {"Yes, I'm sure"}
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>

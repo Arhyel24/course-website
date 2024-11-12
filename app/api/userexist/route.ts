@@ -10,7 +10,11 @@ export async function POST(req: NextRequest) {
 
     const user = await User.findOne({ email }).select("_id");
 
-    return NextResponse.json({ user }, { status: 201 });
+    if (user) {
+      return NextResponse.json({ exists: true }, { status: 201 });
+    } else {
+      return NextResponse.json({ exists: false }, { status: 201 });
+    }
   } catch (error) {
     return NextResponse.json(
       { message: "Internal Server Error" },
