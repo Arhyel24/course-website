@@ -6,10 +6,11 @@ import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
 import { Suspense, useEffect, useState } from "react";
 import { MyFooter } from "@/components/footer";
+import { getUsers } from "@/actions/get-users"
 import toast from "react-hot-toast";
 import { IUser } from "../models/userModel";
 
-export default function Admin() {
+export default async function Admin() {
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
@@ -20,8 +21,10 @@ export default function Admin() {
     setEnrolUser(false);
     setEmail("");
   }
-
-  async function getUsers() {
+  
+  const gusers = getUsers();
+  setUsers(gusers);
+  /*async function getUsers() {
     try {
       const res = await fetch("/api/getallusers", { method: "GET" });
 
@@ -44,7 +47,7 @@ export default function Admin() {
   
   useEffect(() => {
     getUsers();
-  }, []);
+  }, []);*/
 
   async function signUp() {
     setRegistering(true)
