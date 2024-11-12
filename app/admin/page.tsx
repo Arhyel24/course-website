@@ -155,6 +155,7 @@ export default function Admin() {
               + Add user
             </Button>
           </div>
+          <div className="p-4">Registered users: {users.length}</div>
           {tab === "table" ? (
             <UsersTable users={users} />
           ) : users.length > 0 ? (
