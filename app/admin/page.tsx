@@ -34,7 +34,7 @@ export default function Admin() {
 
       console.log(data);
 
-      setUsers(data);
+      setUsers(data.users);
     } catch (error) {
       console.error("Error fetching users:", error);
       toast.error("Failed to fetch users");
