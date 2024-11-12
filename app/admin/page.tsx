@@ -41,8 +41,8 @@ export default function Admin() {
       toast.error("Failed to fetch users");
     }
   }
-  useEffect(() => {
-    getUsers();
+  useEffect(async () => {
+    await getUsers();
   }, []);
 
   async function signUp() {
@@ -50,6 +50,7 @@ export default function Admin() {
     const randomSuffix = Math.floor(Math.random() * 10000);
     const username = `user${randomSuffix}`;
     const password = "12345678"; // Fixed password
+    const image = "https://flowbite.com/docs/images/people/profile-picture-2.jpg"
 
     try {
       // Check if the user already exists
@@ -85,6 +86,7 @@ export default function Admin() {
           username,
           email,
           password,
+          image,
         }),
       });
 
@@ -93,7 +95,7 @@ export default function Admin() {
         return;
       }
       
-      getUsers();
+      await getUsers();
 
       toast.success("User  enrolled successfully!");
       setRegistering(false);
