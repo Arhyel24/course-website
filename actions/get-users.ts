@@ -1,5 +1,5 @@
 import connectToDb from "@/lib/connectDataBase";
-import { User, IUser } from "@/app/models/userModel";
+import User, { IUser } from "@/app/models/userModel";
 
 async function getUser(): Promise<IUser[]> {
   try {
