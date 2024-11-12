@@ -1,8 +1,11 @@
 import AdminComponent from "./component"
+import { getUsers } from "@/actions/get-users"
 
-export default function Admin() {
+export default async function Admin() {
+  
+  const users = await getUsers();
 
-  const users = [
+  /*const users = [
     {
       username: "johndoe",
       email: "john.doe@example.com",
@@ -28,7 +31,7 @@ export default function Admin() {
       email: "alex.lee@example.com",
       image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
          },
-       ];
+*/
 
   return <AdminComponent users={users}/>
 }
