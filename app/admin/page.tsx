@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Button, Label, Modal, TextInput } from "flowbite-react";
+import { Card, Button, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
 import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
@@ -14,7 +14,8 @@ export default function Admin() {
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState<IUser[]>([]);
-
+  const [registering, setRegistering] = useState(false)
+ 
   function onCloseUserModal() {
     setEnrolUser(false);
     setEmail("");
@@ -32,7 +33,7 @@ export default function Admin() {
 
       const data = await res.json();
 
-      console.log(data);
+      //console.log(data);
 
       setUsers(data.users);
     } catch (error) {
@@ -45,6 +46,7 @@ export default function Admin() {
   }, []);
 
   async function signUp() {
+    setRegistering(true)
     const randomSuffix = Math.floor(Math.random() * 10000);
     const username = `user${randomSuffix}`;
     const password = "12345678"; // Fixed password
@@ -90,10 +92,12 @@ export default function Admin() {
         toast.error("Failed to sign up user");
         return;
       }
+      
+      getUsers();
 
       toast.success("User  enrolled successfully!");
+      setRegistering(false);
       setEnrolUser(false);
-      getUsers();
     } catch (error) {
       console.error("Error during sign-up:", error);
       toast.error("Failed to enroll user");
@@ -193,7 +197,8 @@ export default function Admin() {
                 />
               </div>
               <div className="w-full">
-                <Button onClick={signUp}>Enrol</Button>
+                {registering ? <Button  disabled><Spinner color="info" aria-label="registering user" />
+      </Button>: <Button onClick={signUp}>Enrol</Button>}
               </div>
             </div>
           </Modal.Body>
