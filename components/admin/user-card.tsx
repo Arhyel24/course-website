@@ -16,7 +16,7 @@ export function UserCard({ user }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: user.id }),
+        body: JSON.stringify({ id: user.email }),
       });
 
       if (!response.ok) {
