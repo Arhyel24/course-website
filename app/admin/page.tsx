@@ -10,7 +10,7 @@ import { getUsers } from "@/actions/get-users"
 import toast from "react-hot-toast";
 import { IUser } from "../models/userModel";
 
-export default async function Admin() {
+export default function Admin() {
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
