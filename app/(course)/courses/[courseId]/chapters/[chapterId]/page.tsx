@@ -15,27 +15,47 @@ export default async function ChapterDetails({
     return redirect("/");
   }
 
-  const { chapter, course, nextChapter } = await getChapter({
+  const { chapter, course, nextChapterId } = await getChapter({
     ...params,
   });
 
-  // console.log(chapter);
-  // console.log(course);
-  // console.log(nextChapter);
+  // console.log("currecnt chapter: ", chapter);
+  // console.log("chapter course: ", course);
+  // console.log("Next chapter: ", nextChapter);
 
   if (!chapter || !course) {
     return redirect("/");
   }
 
+  const url = chapter.videoUrl as string;
+  const vidId = url.slice(-11);
+  console.log(vidId);
+
   return (
     <div>
-      <div className="mx-auto flex max-w-4xl flex-col pb-20">
-        <div className="p-4">
-          {/* <IKVideo
-            path={chapter.videoUrl?.toString()}
-            transformation={[{ height: "200", width: "600" }]}
-            controls={true}
-          /> */}
+      <div className="mx-auto flex max-w-4xl flex-col pb-20 mt-20 pt-12">
+        <div className="p-4 w-full">
+          {/* <video
+            className="w-full"
+            width="320"
+            height="240"
+            controls
+            preload="auto"
+            autoPlay
+            loop
+          >
+            <source
+              src={`https://www.youtube.com/embed/${vidId}`}
+              type="video/mp4"
+            />
+          </video> */}
+          <iframe
+            className="w-full aspect-video mt-4" // Full width and 16:9 aspect ratio
+            src={`https://www.youtube.com/embed/${vidId}?autoplay=1&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`}
+            allow="autoplay; fullscreen"
+            title={chapter.title}
+            allowFullScreen
+          ></iframe>
         </div>
 
         <div>
@@ -44,7 +64,7 @@ export default async function ChapterDetails({
 
             <CourseProgressButton
               courseId={params.courseId}
-              nextChapterId={nextChapter}
+              nextChapterId={nextChapterId}
             />
           </div>
 

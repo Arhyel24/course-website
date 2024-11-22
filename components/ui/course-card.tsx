@@ -22,7 +22,13 @@ export default function CourseCard({
     <Link href={`/courses/${id}`}>
       <div className="group h-full overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden rounded-md">
-          <Image src={imageUrl} width={300} height={300} alt="Alt text" />
+          <Image
+            className="w-full aspect-ratio-2/1"
+            src={imageUrl}
+            width={300}
+            height={300}
+            alt="Alt text"
+          />
         </div>
 
         <div className="flex flex-col pt-2">

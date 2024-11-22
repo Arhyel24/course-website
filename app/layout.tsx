@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Flowbite, ThemeModeScript } from "flowbite-react";
+import { flowbiteTheme } from "./theme";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,14 +28,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="h-full">
-          <main className="h-full w-full">{children}</main>
-          <Toaster />
-        </div>
-      </body>
+      <head>
+        <ThemeModeScript />
+      </head>
+      <Flowbite theme={{ theme: flowbiteTheme }}>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 dark:bg-slate-600`}
+        >
+          <div className="h-full">
+            <main className="h-full w-full">{children}</main>
+            <Toaster />
+          </div>
+        </body>
+      </Flowbite>
     </html>
   );
 }

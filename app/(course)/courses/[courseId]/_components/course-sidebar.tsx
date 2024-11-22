@@ -12,6 +12,7 @@ type CourseSidebarProps = {
 async function fetchChapters(courseId: string) {
   await connectToDb();
   const course = await Course.findById(courseId);
+  // console.log("s-course: ", course);
 
   if (!course) {
     return [];
@@ -35,8 +36,6 @@ export default async function CourseSidebar({
     return redirect("/");
   }
 
-  const purchase = {}; // Replace with actual purchase logic
-
   // Fetch chapters from the database
   const chapters = await fetchChapters(courseId);
 
@@ -45,11 +44,9 @@ export default async function CourseSidebar({
       <div className="flex flex-col border-b p-8">
         <h1 className="text-lg font-semibold">{courseId}</h1>{" "}
         {/* Display course title or ID */}
-        {purchase ? (
-          <div className="mt-10">
-            <CourseProgress variant="success" value={progressCount} />
-          </div>
-        ) : null}
+        <div className="mt-10">
+          <CourseProgress variant="success" value={progressCount} />
+        </div>
       </div>
       <div className="flex w-full flex-col">
         {chapters.map((chapter) => (

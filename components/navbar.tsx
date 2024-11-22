@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
 import {
   Button,
@@ -25,9 +25,9 @@ export function NavBar() {
     <Navbar fluid rounded>
       <Navbar.Brand href="/">
         <Image
-          width={6}
-          height={6}
-          src="/fonts/favicon.ico"
+          width={30}
+          height={30}
+          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
           className="mr-3 h-6 sm:h-9"
           alt="miam affiliate"
         />
@@ -36,6 +36,7 @@ export function NavBar() {
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
+        <DarkThemeToggle />
         <Dropdown
           arrowIcon={false}
           inline

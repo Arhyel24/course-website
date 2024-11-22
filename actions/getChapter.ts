@@ -6,64 +6,46 @@ type GetChapterArgs = {
   chapterId: string;
 };
 
-// interface GetChapterResponse {
-//   chapter: IChapter | null;
-//   course: ICourse | null;
-//   nextChapter: string | null;
-// }
+interface GetChapterResponse {
+  chapter: IChapter | null;
+  course: ICourse | null;
+  nextChapterId: string | null;
+}
 
 export default async function getChapter({
   courseId,
   chapterId,
-}: GetChapterArgs) {
+}: GetChapterArgs): Promise<GetChapterResponse> {
   try {
-    // Connect to the database
     await connectToDb();
 
-    // Find the course and populate chapters
     const course = await Course.findById(courseId).populate("chapters");
-
     if (!course) {
-      return {
-        chapter: null,
-        course: null,
-        nextChapter: null,
-      };
+      console.log("Course not found");
+      return { chapter: null, course: null, nextChapterId: null };
     }
 
-    // Find the chapter index
-    const chapterIndex = course.chapters.findIndex(
-      (chap) => chap._id.toString() === chapterId
-    );
-
-    if (chapterIndex === -1) {
-      return {
-        chapter: null,
-        course,
-        nextChapter: null,
-      };
+    const chapter = (await Chapter.findById(chapterId)) as IChapter | null;
+    if (!chapter) {
+      return { chapter: null, course, nextChapterId: null };
     }
 
-    const chapterI = course.chapters[chapterIndex];
-
-    const chapter = await Chapter.findById(chapterI);
-
-    const nextChapter =
-      chapterIndex + 1 < course.chapters.length
-        ? course.chapters[chapterIndex + 1]._id.toString()
-        : null;
+    const nextChapter = (await Chapter.findOne({
+      courseId,
+      order: chapter.order + 1,
+    })) as IChapter | null;
 
     return {
       chapter,
       course,
-      nextChapter,
+      nextChapterId: nextChapter ? nextChapter.id : null,
     };
   } catch (error) {
     console.error("Error fetching chapter:", error);
     return {
       chapter: null,
       course: null,
-      nextChapter: null,
+      nextChapterId: null,
     };
   }
 }
