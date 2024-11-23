@@ -13,11 +13,13 @@ import { isTeacher } from "@/lib/teacher";
 
 export default function AdminComponent({ users }) {
   const { data: session } = useSession();
+
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
 
   const [registering, setRegistering] = useState(false);
+
   const router = useRouter();
 
   if (!session) {
@@ -35,7 +37,7 @@ export default function AdminComponent({ users }) {
   console.log(isTeacherRole);
 
   if (isTeacherRole) {
-    redirect("/");
+    router.push("/");
   }
 
   async function signUp() {
