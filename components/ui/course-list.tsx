@@ -1,13 +1,15 @@
 import CourseCard from "./course-card";
 
 export default function CoursesList({ items }) {
+  // console.log("items in course", items);
+
   return (
     <div>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4">
         {items.map((course) => (
           <CourseCard
-            key={course.id}
-            id={course.id}
+            key={course._id}
+            id={course._id}
             title={course.title}
             imageUrl={course.imageUrl}
             chaptersLength={course.chapters.length}

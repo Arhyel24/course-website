@@ -4,30 +4,47 @@ import { Card, Button, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
 import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { MyFooter } from "@/components/footer";
-import { getUsers } from "@/actions/get-users"
 import toast from "react-hot-toast";
-import { IUser } from "../models/userModel";
+import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { isTeacher } from "@/lib/teacher";
 
 export default function AdminComponent({ users }) {
+  const { data: session } = useSession();
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
 
-  const [registering, setRegistering] = useState(false)
+  const [registering, setRegistering] = useState(false);
+  const router = useRouter();
+
+  if (!session) {
+    router.push("/login");
+  }
+
+  console.log(session);
 
   function onCloseUserModal() {
     setEnrolUser(false);
     setEmail("");
   }
 
+  const isTeacherRole = isTeacher(session?.user?.email);
+  console.log(isTeacherRole);
+
+  if (isTeacherRole) {
+    return redirect("/");
+  }
+
   async function signUp() {
-    setRegistering(true)
+    setRegistering(true);
     const randomSuffix = Math.floor(Math.random() * 10000);
     const username = `user${randomSuffix}`;
     const password = "12345678"; // Fixed password
-    const image = "https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+    const image =
+      "https://flowbite.com/docs/images/people/profile-picture-2.jpg";
 
     try {
       // Check if the user already exists
@@ -75,12 +92,12 @@ export default function AdminComponent({ users }) {
       toast.success("User  enrolled successfully!");
       setRegistering(false);
       setEnrolUser(false);
+      router.refresh();
     } catch (error) {
       console.error("Error during sign-up:", error);
       toast.error("Failed to enroll user");
     }
   }
-
 
   const tableView = () => setTab("table");
   const listView = () => setTab("card");
@@ -89,7 +106,7 @@ export default function AdminComponent({ users }) {
     <>
       <Suspense>
         <NavBar />
-        <div className="px-8 py-6">
+        <div className="px-8 py-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
           <div className="flex justify-between">
             <div className="flex flex-wrap gap-2">
               <Button
@@ -119,8 +136,8 @@ export default function AdminComponent({ users }) {
               ))}
             </div>
           ) : (
-            <Card className="w-full mt-2">
-              <div className="flex justify-center items-center p-4">
+            <Card className="w-full mt-2 bg-white dark:bg-gray-800">
+              <div className="flex justify-center items-center p-4 text-gray-900 dark:text-gray-200">
                 No users found!!
               </div>
             </Card>
@@ -147,8 +164,14 @@ export default function AdminComponent({ users }) {
                 />
               </div>
               <div className="w-full">
-                {registering ? <Button  disabled><Spinner color="info" aria-label="registering user" />
-      Enrolling...</Button>: <Button onClick={signUp}>Enrol</Button>}
+                {registering ? (
+                  <Button disabled>
+                    <Spinner color="info" aria-label="registering user" />
+                    Enrolling...
+                  </Button>
+                ) : (
+                  <Button onClick={signUp}>Enrol</Button>
+                )}
               </div>
             </div>
           </Modal.Body>

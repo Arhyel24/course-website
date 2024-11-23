@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 let isConnected = false;
 
 const connectToDb = async (retries = 5) => {
+  mongoose.set("debug", true);
   mongoose.set("strictQuery", true);
 
   if (isConnected) {
-    console.log("Using existing database connection");
+    // console.log("Using existing database connection");
     return;
   }
 
@@ -14,7 +15,7 @@ const connectToDb = async (retries = 5) => {
     await mongoose.connect(process.env.MONGODB_URI as string);
 
     isConnected = true;
-    console.log("New database connection established");
+    // console.log("New database connection established");
   } catch (error) {
     console.error("Database connection error:", error);
 
@@ -24,7 +25,7 @@ const connectToDb = async (retries = 5) => {
       return connectToDb(retries - 1); // Retry connection
     } else {
       console.error("Max retries reached. Could not connect to the database.");
-      throw new Error("Database connection failed after multiple attempts.");
+      console.error("Database connection failed after multiple attempts.");
     }
   }
 };

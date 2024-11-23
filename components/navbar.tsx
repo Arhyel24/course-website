@@ -2,19 +2,18 @@
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
-import {
-  Button,
-  Checkbox,
-  Label,
-  Modal,
-  TextInput,
-  FileInput,
-} from "flowbite-react";
+import { Button, Label, Modal, TextInput, FileInput } from "flowbite-react";
 import { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
+import { isTeacher } from "@/lib/teacher";
 
 export function NavBar() {
   const [openModal, setOpenModal] = useState(false);
   const [email, setEmail] = useState("");
+
+  const { data: session } = useSession();
+
+  const isAdmin = isTeacher(session?.user?.email);
 
   function onCloseModal() {
     setOpenModal(false);
@@ -22,7 +21,7 @@ export function NavBar() {
   }
 
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded className="bg-white dark:bg-gray-800">
       <Navbar.Brand href="/">
         <Image
           width={30}
@@ -35,33 +34,47 @@ export function NavBar() {
           MIAM Affiliate
         </span>
       </Navbar.Brand>
-      <div className="flex md:order-2">
+      <div className="flex md:order-2 gap-2">
         <DarkThemeToggle />
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded
-            />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              name@flowbite.com
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item onClick={() => setOpenModal(true)}>
-            Settings
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
-        </Dropdown>
-        {/* <Navbar.Toggle /> */}
+        {!session ? (
+          <Button href="/login">Login</Button>
+        ) : (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar
+                alt="User  settings"
+                img={
+                  session?.user?.image ||
+                  "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                }
+                rounded
+              />
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm dark:text-gray-200">
+                {session?.user?.name}
+              </span>
+              <span className="block truncate text-sm font-medium dark:text-gray-400">
+                {session?.user?.email}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item href="/">Dashboard</Dropdown.Item>
+            {isAdmin && (
+              <>
+                <Dropdown.Item href="/admin">View users</Dropdown.Item>
+                <Dropdown.Item href="/admin">View Courses</Dropdown.Item>
+              </>
+            )}
+            <Dropdown.Item onClick={() => setOpenModal(true)}>
+              Settings
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
+          </Dropdown>
+        )}
       </div>
       <Modal show={openModal} size="md" onClose={onCloseModal} popup>
         <Modal.Header />
@@ -110,13 +123,20 @@ export function NavBar() {
                   placeholder="Username"
                   required
                   shadow
+                  className="dark:bg-gray-700 dark:text-gray-200"
                 />
               </div>
               <div>
                 <div className="mb-2 block">
                   <Label htmlFor="password2" value="Your password" />
                 </div>
-                <TextInput id="password2" type="password" required shadow />
+                <TextInput
+                  id="password2"
+                  type="password"
+                  required
+                  shadow
+                  className="dark:bg-gray-700 dark:text-gray-200"
+                />
               </div>
               <div>
                 <div className="mb-2 block">
@@ -127,6 +147,7 @@ export function NavBar() {
                   type="password"
                   required
                   shadow
+                  className="dark:bg-gray-700 dark:text-gray-200"
                 />
               </div>
 

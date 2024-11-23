@@ -23,7 +23,7 @@ export function UsersTable({ users }) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to delete user");
+        console.error("Failed to delete user");
       }
 
       const data = await response.json();
@@ -50,7 +50,7 @@ export function UsersTable({ users }) {
           {users.length > 0 ? (
             users.map((user) => (
               <Table.Row
-                key={user.id}
+                key={user.username}
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
               >
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
@@ -60,7 +60,7 @@ export function UsersTable({ users }) {
                 <Table.Cell>21-01-2024</Table.Cell>
                 <Table.Cell>
                   <Button
-                    className="font-medium text-cyan-400 hover:underline dark:text-cyan-500"
+                    className="font-medium text-white hover:underline"
                     color="failure"
                     onClick={() => {
                       setDeleteUser(user);

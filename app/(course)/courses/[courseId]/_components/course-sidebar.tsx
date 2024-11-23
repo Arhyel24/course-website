@@ -9,6 +9,18 @@ type CourseSidebarProps = {
   progressCount: number;
 };
 
+async function fetchCourse(courseId: string) {
+  await connectToDb();
+  const course = await Course.findById(courseId);
+  // console.log("s-course: ", course);
+
+  if (!course) {
+    return;
+  }
+
+  return course.title;
+}
+
 async function fetchChapters(courseId: string) {
   await connectToDb();
   const course = await Course.findById(courseId);
@@ -38,11 +50,14 @@ export default async function CourseSidebar({
 
   // Fetch chapters from the database
   const chapters = await fetchChapters(courseId);
+  const title = await fetchCourse(courseId);
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto border-r shadow-sm">
-      <div className="flex flex-col border-b p-8">
-        <h1 className="text-lg font-semibold">{courseId}</h1>{" "}
+    <div className="flex h-full flex-col overflow-y-auto border-r shadow-sm bg-white dark:bg-gray-800">
+      <div className="flex flex-col border-b p-8 bg-gray-50 dark:bg-gray-900">
+        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+          {title}
+        </h1>
         {/* Display course title or ID */}
         <div className="mt-10">
           <CourseProgress variant="success" value={progressCount} />

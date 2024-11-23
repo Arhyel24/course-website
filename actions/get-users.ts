@@ -9,6 +9,6 @@ export async function getUsers(): Promise<IUser[]> {
     return users;
   } catch (error) {
     console.error("Error fetching users:", error);
-    throw new Error("Could not fetch courses. Please try again later.");
+    return [];
   }
 }

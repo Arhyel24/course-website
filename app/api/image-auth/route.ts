@@ -5,7 +5,7 @@ import crypto, { BinaryLike } from "crypto";
 const privateKey = process.env.PRIVATE_KEY as BinaryLike;
 
 if (!privateKey) {
-  throw new Error("PRIVATE_KEY environment variable is not set");
+  console.error("PRIVATE_KEY environment variable is not set");
 }
 
 export async function GET(request: NextRequest): Promise<NextResponse> {

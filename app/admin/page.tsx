@@ -1,37 +1,22 @@
-import AdminComponent from "./component"
-import { getUsers } from "@/actions/get-users"
+import toast from "react-hot-toast";
+import AdminComponent from "./component";
+import { getUsers } from "@/actions/get-users";
 
 export default async function Admin() {
-  
-  const users = await getUsers();
+  const apiUrl = `${process.env.NEXTAUTH_URL}/api/getallusers`;
+  const usersResponse = await fetch(apiUrl, { method: "GET" });
 
-  /*const users = [
-    {
-      username: "johndoe",
-      email: "john.doe@example.com",
-      image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-         },
-    {
-      username: "sarahjones",
-      email: "sarah.jones@example.com",
-      image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-         },
-    {
-      username: "mikebrown",
-      email: "mike.brown@example.com",
-      image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-         },
-    {
-      username: "emilywang",
-      email: "emily.wang@example.com",
-      image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-         },
-    {
-      username: "alexlee",
-      email: "alex.lee@example.com",
-      image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
-         },
-*/
+  // Check if the response is OK
+  if (!usersResponse.ok) {
+    toast.error("Failed to get users");
+  }
 
-  return <AdminComponent users={users}/>
+  const users = await usersResponse.json();
+
+  if (!users) {
+    toast.error("Failed to load users");
+  }
+  // const users = await getUsers();
+
+  return <AdminComponent users={users.users} />;
 }

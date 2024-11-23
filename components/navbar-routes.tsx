@@ -7,9 +7,12 @@ import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { isTeacher } from "@/lib/teacher";
 import { Button } from "./ui/button";
+import { DarkThemeToggle } from "flowbite-react";
+import { useSession } from "next-auth/react";
 
 export const NavbarRoutes = () => {
-  const userId = "wazirina";
+  const { data: session } = useSession();
+  const email = session?.user?.email;
 
   const pathname = usePathname();
 
@@ -25,6 +28,7 @@ export const NavbarRoutes = () => {
         </div>
       )}
       <div className="ml-auto flex gap-x-2">
+        <DarkThemeToggle />
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
@@ -32,7 +36,7 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) : isTeacher(userId) ? (
+        ) : isTeacher(email) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Teacher mode

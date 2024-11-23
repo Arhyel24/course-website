@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { flowbiteTheme } from "./theme";
+import AppProvider from "@/lib/providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,14 +33,16 @@ export default function RootLayout({
         <ThemeModeScript />
       </head>
       <Flowbite theme={{ theme: flowbiteTheme }}>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 dark:bg-slate-600`}
-        >
-          <div className="h-full">
-            <main className="h-full w-full">{children}</main>
-            <Toaster />
-          </div>
-        </body>
+        <AppProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200`}
+          >
+            <div className="h-full">
+              <main className="h-full w-full">{children}</main>
+              <Toaster />
+            </div>
+          </body>
+        </AppProvider>
       </Flowbite>
     </html>
   );

@@ -20,7 +20,7 @@ export function UserCard({ user }) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to delete user");
+        console.error("Failed to delete user");
       }
 
       const data = await response.json();
@@ -39,7 +39,10 @@ export function UserCard({ user }) {
         <Image
           alt={`${user.username}'s image`}
           height={96}
-          src={user.image}
+          src={
+            user.image ||
+            "https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+          }
           width={96}
           className="mb-3 rounded-full shadow-lg"
         />

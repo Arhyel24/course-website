@@ -1,22 +1,45 @@
 import { Course } from "@/app/models/Course";
+import connectToDb from "@/lib/connectDataBase";
 import { redirect } from "next/navigation";
 
+/**
+ * Page to handle course redirection based on the course ID.
+ * If the course exists, redirects to the first chapter.
+ * Otherwise, redirects to the homepage.
+ */
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
-  const id = params.courseId;
-  const course = await Course.findOne({ id });
+  await connectToDb();
+  const courseId = params.courseId;
+  console.log("Id in page: ", courseId);
 
-  // console.log("course chapters 1", course?.chapters);
+  const course = await Course.findById(courseId as string).populate("chapters");
 
-  const chapterId = course?.chapters[0].toString();
+  console.log("course in page: ", course);
 
-  // console.log("course chapter 2: ", chapterId);
-  // console.log(course);
-
+  // If no course is found, redirect to the homepage
   if (!course) {
     return redirect("/");
   }
 
-  return redirect(`/courses/${course.id}/chapters/${chapterId}`);
+  // Validate the presence of chapters
+  if (!course.chapters || course.chapters.length === 0) {
+    console.warn(`Course ${courseId} has no chapters.`);
+    return redirect(`/`);
+  }
+
+  // Extract the first chapter ID for redirection
+  const firstChapterId = course.chapters[0]?._id?.toString();
+  console.log("first chapter id: ", firstChapterId);
+
+  if (!firstChapterId) {
+    console.error(
+      `First chapter ID for course ${courseId} could not be resolved.`
+    );
+    return redirect(`/courses/${courseId}`);
+  }
+
+  // Redirect to the first chapter
+  return redirect(`/courses/${course._id}/chapters/${firstChapterId}`);
 };
 
 export default CourseIdPage;

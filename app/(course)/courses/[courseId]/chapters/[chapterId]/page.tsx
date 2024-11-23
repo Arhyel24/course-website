@@ -19,9 +19,9 @@ export default async function ChapterDetails({
     ...params,
   });
 
-  // console.log("currecnt chapter: ", chapter);
-  // console.log("chapter course: ", course);
-  // console.log("Next chapter: ", nextChapter);
+  console.log("current chapter: ", chapter);
+  console.log("chapter course: ", course);
+  console.log("Next chapter: ", nextChapterId);
 
   if (!chapter || !course) {
     return redirect("/");

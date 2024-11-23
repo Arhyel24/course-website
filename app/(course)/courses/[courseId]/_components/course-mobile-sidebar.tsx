@@ -18,7 +18,7 @@ export default function CourseMobileSidebar({
         <MenuIcon />
       </SheetTrigger>
 
-      <SheetContent side="left" className="w-72 bg-white p-0">
+      <SheetContent side="left" className="w-72 bg-white dark:bg-gray-800 p-0">
         <CourseSidebar courseId={course.id} progressCount={progressCount} />
       </SheetContent>
     </Sheet>
