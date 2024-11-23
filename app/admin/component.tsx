@@ -35,7 +35,7 @@ export default function AdminComponent({ users }) {
   console.log(isTeacherRole);
 
   if (isTeacherRole) {
-    return redirect("/");
+    redirect("/");
   }
 
   async function signUp() {
