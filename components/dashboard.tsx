@@ -12,12 +12,12 @@ export default async function Dashboard() {
     const apiUrl = `${process.env.NEXTAUTH_URL}/api/getcourses`;
 
     // Fetch courses from the API
-    const coursesResponse = await fetch(apiUrl, { method: "GET" });
+    const courses = await fetch(apiUrl, { method: "GET" });
 
     // Parse the response JSON
-    const tsx = await coursesResponse.json();
+    const tsx = await courses.json();
 
-    coursesInProgress = tsx || [];
+    coursesInProgress = tsx.courses || [];
   } catch (error) {
     console.error("Error fetching courses:", error);
     coursesInProgress = [];
