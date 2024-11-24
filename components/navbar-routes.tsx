@@ -14,6 +14,8 @@ export const NavbarRoutes = () => {
   const { data: session } = useSession();
   const email = session?.user?.email;
 
+  console.log("email in navbar: ", email);
+
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");

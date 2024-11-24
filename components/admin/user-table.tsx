@@ -2,6 +2,7 @@
 
 import { IUser } from "@/app/models/userModel";
 import { Table, Button, Modal } from "flowbite-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
@@ -9,6 +10,8 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 export function UsersTable({ users }) {
   const [openModal, setOpenModal] = useState(false);
   const [deleteUser, setDeleteUser] = useState<IUser | null>(null);
+
+  const router = useRouter();
 
   const deleteUserHandler = async () => {
     if (!deleteUser) return;
@@ -29,6 +32,7 @@ export function UsersTable({ users }) {
       const data = await response.json();
       toast.success(data.message);
       setOpenModal(false);
+      router.refresh();
     } catch (error) {
       console.error("Error deleting user:", error);
       toast.error("Failed to delete user");

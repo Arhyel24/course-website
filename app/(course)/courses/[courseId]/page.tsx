@@ -1,5 +1,7 @@
 import { Course } from "@/app/models/Course";
+import authOptions from "@/lib/AuthOptions";
 import connectToDb from "@/lib/connectDataBase";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 /**
@@ -8,13 +10,14 @@ import { redirect } from "next/navigation";
  * Otherwise, redirects to the homepage.
  */
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) redirect("/");
+
   await connectToDb();
   const courseId = params.courseId;
-  console.log("Id in page: ", courseId);
 
   const course = await Course.findById(courseId as string).populate("chapters");
-
-  console.log("course in page: ", course);
 
   // If no course is found, redirect to the homepage
   if (!course) {
@@ -29,7 +32,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   // Extract the first chapter ID for redirection
   const firstChapterId = course.chapters[0]?._id?.toString();
-  console.log("first chapter id: ", firstChapterId);
 
   if (!firstChapterId) {
     console.error(

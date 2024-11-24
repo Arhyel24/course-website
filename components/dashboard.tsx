@@ -16,7 +16,7 @@ export default async function Dashboard() {
 
     // Handle non-OK responses
     if (!coursesResponse.ok) {
-      throw new Error(`Failed to fetch courses: ${coursesResponse.statusText}`);
+      console.error(`Failed to fetch courses: ${coursesResponse.statusText}`);
     }
 
     // Parse the response JSON
@@ -31,12 +31,12 @@ export default async function Dashboard() {
     coursesInProgress = []; // Default to an empty array
   }
 
-  // Log course details for debugging
-  coursesInProgress.forEach((course) =>
-    console.log(
-      `Course "${course.title}" has ${course.chapters?.length || 0} chapters.`
-    )
-  );
+  // // Log course details for debugging
+  // coursesInProgress.forEach((course) =>
+  //   console.log(
+  //     `Course "${course.title}" has ${course.chapters?.length || 0} chapters.`
+  //   )
+  // );
 
   return (
     <div className="space-y-4 p-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">

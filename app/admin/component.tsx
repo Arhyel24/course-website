@@ -7,37 +7,19 @@ import { UsersTable } from "@/components/admin/user-table";
 import { Suspense, useState } from "react";
 import { MyFooter } from "@/components/footer";
 import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { isTeacher } from "@/lib/teacher";
+import { useRouter } from "next/navigation";
 
 export default function AdminComponent({ users }) {
-  const { data: session } = useSession();
-
   const [tab, setTab] = useState("table");
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
-
   const [registering, setRegistering] = useState(false);
 
   const router = useRouter();
 
-  if (!session) {
-    router.push("/login");
-  }
-
-  console.log(session);
-
   function onCloseUserModal() {
     setEnrolUser(false);
     setEmail("");
-  }
-
-  const isTeacherRole = isTeacher(session?.user?.email);
-  console.log(isTeacherRole);
-
-  if (isTeacherRole) {
-    router.push("/");
   }
 
   async function signUp() {

@@ -2,12 +2,15 @@
 
 import { Card, Button, Modal } from "flowbite-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export function UserCard({ user }) {
   const [openModal, setOpenModal] = useState(false);
+
+  const router = useRouter();
 
   const deleteUser = async () => {
     try {
@@ -26,6 +29,7 @@ export function UserCard({ user }) {
       const data = await response.json();
       toast.success(data.message);
       setOpenModal(false);
+      router.refresh();
     } catch (error) {
       console.error("Error deleting user:", error);
       toast.error("Failed to delete user");

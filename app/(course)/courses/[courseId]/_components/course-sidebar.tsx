@@ -42,12 +42,6 @@ export default async function CourseSidebar({
   courseId,
   progressCount,
 }: CourseSidebarProps) {
-  const userId = "wazirina"; // Replace with actual user ID logic
-
-  if (!userId) {
-    return redirect("/");
-  }
-
   // Fetch chapters from the database
   const chapters = await fetchChapters(courseId);
   const title = await fetchCourse(courseId);
