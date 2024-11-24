@@ -14,11 +14,6 @@ export default async function Dashboard() {
     // Fetch courses from the API
     const coursesResponse = await fetch(apiUrl, { method: "GET" });
 
-    // Handle non-OK responses
-    if (!coursesResponse.ok) {
-      console.error("Failed to fetch courses");
-    }
-
     // Parse the response JSON
     const tsx = await coursesResponse.json();
 
