@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 let isConnected = false;
 
 const connectToDb = async (retries = 5) => {
-  mongoose.set("debug", true);
+  // mongoose.set("debug", true);
   mongoose.set("strictQuery", true);
 
   if (isConnected) {
