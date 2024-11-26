@@ -6,10 +6,14 @@ import { Button, Label, Modal, TextInput, FileInput } from "flowbite-react";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { isTeacher } from "@/lib/teacher";
+import toast from "react-hot-toast";
 
 export function NavBar() {
   const [openModal, setOpenModal] = useState(false);
   const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [error, setError] = useState("");
 
   const { data: session } = useSession();
 
@@ -18,7 +22,45 @@ export function NavBar() {
   function onCloseModal() {
     setOpenModal(false);
     setEmail("");
+    setNewPassword("");
+    setRepeatPassword("");
+    setError(""); // Clear error message on close
   }
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+
+    setError("");
+
+    if (newPassword !== repeatPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/update-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          email: session?.user.email,
+          password: newPassword,
+        }),
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to update details");
+      }
+
+      onCloseModal();
+
+      toast.success("Password updated successfully!");
+    } catch (error) {
+      setError("An error occurred while updating the password.");
+    }
+  };
 
   return (
     <Navbar fluid rounded className="bg-white dark:bg-gray-800">
@@ -120,6 +162,7 @@ export function NavBar() {
                 <TextInput
                   id="username"
                   type="text"
+                  value={session?.user.name || "null"}
                   placeholder="Username"
                   required
                   shadow
@@ -128,23 +171,29 @@ export function NavBar() {
               </div>
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="password2" value="Your password" />
+                  <Label htmlFor="password" value="New Password" />
                 </div>
+
                 <TextInput
-                  id="password2"
+                  id="password"
                   type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                   required
                   shadow
                   className="dark:bg-gray-700 dark:text-gray-200"
                 />
               </div>
+
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="repeat-password" value="Repeat password" />
+                  <Label htmlFor="repeat-password" value="Repeat Password" />
                 </div>
                 <TextInput
                   id="repeat-password"
                   type="password"
+                  value={repeatPassword}
+                  onChange={(e) => setRepeatPassword(e.target.value)}
                   required
                   shadow
                   className="dark:bg-gray-700 dark:text-gray-200"

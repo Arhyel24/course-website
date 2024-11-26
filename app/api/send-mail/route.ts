@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
                 <li><strong>Email:</strong> ${email}</li>
                 <li><strong>Password:</strong> 12345678</li>
             </ul>
-            <p style="color: #4a5568; margin-top: 1rem;">To log in, please visit <a href="${process.env.NEXTAUTH_URL}/login" style="color: #3182ce; text-decoration: underline; font-weight: bold;">${process.env.NEXTAUTH_URL}/login</a>.</p>
+            <p style="color: #4a5568; margin-top: 1rem;">To log in, please visit <a href="${process.env.NEXTAUTH_URL}login" style="color: #3182ce; text-decoration: underline; font-weight: bold;">${process.env.NEXTAUTH_URL}login</a>.</p>
             <p style="color: #4a5568; margin-top: 1rem;"><strong>Important:</strong> For security reasons, please update your username and password as soon as you log in. This will ensure your account remains secure and personalized for your needs.</p>
             <p style="color: #4a5568; margin-top: 1rem;">Once you finish the course, you’ll gain access to my exclusive mentorship group, where you’ll:</p>
             <ul style="color: #4a5568; margin-left: 1.5rem;">

@@ -37,6 +37,16 @@ const nextConfig = {
         hostname: "storage.googleapis.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        port: "",
+      },
     ],
   },
 };
