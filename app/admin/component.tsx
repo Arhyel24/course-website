@@ -8,7 +8,6 @@ import { Suspense, useState } from "react";
 import { MyFooter } from "@/components/footer";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import sendMail from "@/actions/send-mail";
 
 export default function AdminComponent({ users }) {
   const [tab, setTab] = useState("table");
@@ -74,7 +73,21 @@ export default function AdminComponent({ users }) {
         return;
       }
 
-      await sendMail(email);
+      // Proceed to sign up the user
+      const emailResponse = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      });
+
+      if (!emailResponse.ok) {
+        toast.error("Failed to send email");
+        return;
+      }
 
       toast.success("User  enrolled successfully!");
       setRegistering(false);

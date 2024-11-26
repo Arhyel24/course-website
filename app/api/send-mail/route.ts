@@ -1,28 +1,36 @@
+import User from "@/app/models/userModel";
+import { hashPassword } from "@/lib/bcryptconfig";
+import connectToDb from "@/lib/connectDataBase";
 import nodemailer from "nodemailer";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function sendMail(email: string) {
-  // Create a transporter using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // upgrade later with STARTTLS
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASSWORD,
-    },
-  });
+export async function POST(req: NextRequest) {
+  try {
+    // Parse the JSON request body
+    const { email } = await req.json();
 
-  // Define the message options
-  const message = {
-    from: {
-      name: "Massive Income in Affiliate Marketing",
-      address: process.env.MAIL_USER as string, // Add the sender's email address
-    },
-    to: email,
-    subject: "Massive Income in Affiliate Marketing Onboarding",
-    text: `Thanks for registering, here are your temporary login details: Email ${email} and password: 12345678`,
-    html: `
+    // Create a transporter using the default SMTP transport
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // upgrade later with STARTTLS
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD,
+      },
+    });
+
+    // Define the message options
+    const message = {
+      from: {
+        name: "Massive Income in Affiliate Marketing",
+        address: process.env.MAIL_USER as string, // Add the sender's email address
+      },
+      to: email,
+      subject: "Massive Income in Affiliate Marketing Onboarding",
+      text: `Thanks for registering, here are your temporary login details: Email ${email} and password: 12345678`,
+      html: `
       <html>
       <head>
           <meta charset="UTF-8">
@@ -68,9 +76,19 @@ export default async function sendMail(email: string) {
       </body>
       </html>
     `,
-  };
+    };
 
-  // Send the email
-  const info = await transporter.sendMail(message);
-  console.log("Email sent: ", info.response);
+    // Send the email
+    await transporter.sendMail(message);
+
+    return NextResponse.json(
+      { message: "email sent successfully" },
+      { status: 201 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }
