@@ -8,10 +8,12 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <Dashboard />
-      <Hero />
-      <Reviews />
-      <MyFooter />
+      <div className="pt-10">
+        <Dashboard />
+        <Hero />
+        <Reviews />
+        <MyFooter />
+      </div>
     </>
   );
 }
