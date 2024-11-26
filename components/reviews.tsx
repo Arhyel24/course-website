@@ -73,7 +73,7 @@ const Reviews = () => {
         {reviewsData.map((review, index) => (
           <div
             key={index}
-            className="p-8 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl shadow-gray-600/10"
+            className="p-8 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-xl rounded-xl shadow-gray-600/10"
           >
             <div className="flex gap-4 items-start">
               <Image

@@ -1,7 +1,7 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
-import { NavBar } from "@/components/navbar";
 import toast from "react-hot-toast";
 import { FileInput, Label, TextInput } from "flowbite-react";
 
@@ -9,6 +9,9 @@ export default function ProfileComp({ user }) {
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
+  const [username, setUsername] = useState(user.name);
+  const [image, setImage] = useState(user.image);
+  const [imageFile, setImageFile] = useState(null);
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -27,25 +30,35 @@ export default function ProfileComp({ user }) {
     toast("Password updated successfully!");
   };
 
+  const handleUserDetailsUpdate = async (e) => {
+    e.preventDefault();
+    // Here you would typically send the updated username and image to your API
+    // For example:
+    // const formData = new FormData();
+    // formData.append("username", username);
+    // if (imageFile) {
+    //   formData.append("image", imageFile);
+    // }
+    // const response = await fetch('/api/update-user-details', { method: 'POST', body: formData });
+
+    toast("User  details updated successfully!");
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto mt-20">
-      <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full ">
+    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto">
+      {/* User Details Section */}
+      <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full mb-6">
         <Image
-          src={user.image}
+          src={image}
           alt="User  Avatar"
           width={100}
           height={100}
           className="rounded-full mb-4"
         />
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          {user.name}
+          {username}
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">{user.email}</p>
-
-        <form className="mt-6 w-full" onSubmit={handlePasswordChange}>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-            User Details
-          </h3>
+        <form className="mt-4 w-full" onSubmit={handleUserDetailsUpdate}>
           <div className="flex w-full items-center justify-center">
             <Label
               htmlFor="dropzone-file"
@@ -75,7 +88,14 @@ export default function ProfileComp({ user }) {
                   SVG, PNG, JPG or GIF (MAX. 800x400px)
                 </p>
               </div>
-              <FileInput id="dropzone-file" className="hidden" />
+              <FileInput
+                id="dropzone-file"
+                // onChange={(e) => {
+                //   setImageFile(e.target.files[0]);
+                //   setImage(URL.createObjectURL(e.target.files[0]));
+                // }}
+                className="hidden"
+              />
             </Label>
           </div>
           <div className="mt-4">
@@ -83,20 +103,32 @@ export default function ProfileComp({ user }) {
               htmlFor="username"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              New Password
+              Username
             </label>
-            <input
-              type="text"
+            <TextInput
               id="username"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder={user.username}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Change Password
-          </h3>
+          <button
+            type="submit"
+            className="mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Update User Details
+          </button>
+        </form>
+      </div>
+
+      {/* Change Password Section */}
+      <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full">
+        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
+          Change Password
+        </h3>
+        <form className="w-full" onSubmit={handlePasswordChange}>
           <div className="mt-4">
             <label
               htmlFor="new-password"
