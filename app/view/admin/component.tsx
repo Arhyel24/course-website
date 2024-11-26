@@ -105,8 +105,7 @@ export default function AdminComponent({ users }) {
   return (
     <>
       <Suspense>
-        <NavBar />
-        <div className="px-8 py-16 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
+        <div className="px-8 py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
           <div className="flex justify-between">
             <div className="flex flex-wrap gap-2">
               <Button

@@ -66,7 +66,7 @@ export function NavBar() {
     <Navbar
       fluid
       rounded
-      className="bg-white dark:bg-gray-800 fixed w-full z-index-1000"
+      className="bg-white dark:bg-gray-800 fixed w-full z-1000"
     >
       <Navbar.Brand href="/">
         <Image
