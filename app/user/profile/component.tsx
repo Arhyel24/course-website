@@ -28,8 +28,8 @@ export default function ProfileComp({ user }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto">
-      <div className="flex flex-col items-center bg-white dark:bg-gray-700 shadow-lg rounded-lg p-6 w-full pt-20">
+    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto mt-20">
+      <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full ">
         <Image
           src={user.image}
           alt="User  Avatar"
