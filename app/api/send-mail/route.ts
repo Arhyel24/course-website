@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     // Define the message options
     const message = {
       from: {
-        name: "Massive Income in Affiliate Marketing",
+        name: "Coach Adams",
         address: process.env.MAIL_USER as string, // Add the sender's email address
       },
       to: email,
@@ -32,49 +32,43 @@ export async function POST(req: NextRequest) {
       text: `Thanks for registering, here are your temporary login details: Email ${email} and password: 12345678`,
       html: `
       <html>
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome Email</title>
-          <script src="https://cdn.tailwindcss.com"></script>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-          <style>
-              body {
-                  font-family: 'Roboto', sans-serif;
-              }
-          </style>
-      </head>
-      <body class="bg-gray-100 py-10">
-          <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-              <div class="bg-blue-500 text-white text-center py-4">
-                  <h1 class="text-2xl font-bold">Welcome to "Massive Income in Affiliate Marketing"!</h1>
-              </div>
-              <div class="p-6">
-                  <p class="text-gray-700 text-lg">Dear [Customer's Name],</p>
-                  <p class="text-gray-700 mt-4">Thank you for joining <em>Massive Income in Affiliate Marketing by Coach Adams</em>! I’m thrilled to guide you through this exciting journey.</p>
-                  <p class="text-gray-700 mt-4">Here are your temporary login details:</p>
-                  <ul class="list-disc list-inside text-gray-700 mt-2">
-                      <li><strong>Email:</strong> ${email}</li>
-                      <li><strong>Password:</strong> 12345678</li>
-                  </ul>
-                  <p class="text-gray-700 mt-4">To log in, please visit <a href="${process.env.NEXTAUTH_URL}/login" class="text-blue-500 underline">[Insert Login URL]</a>.</p>
-                  <p class="text-gray-700 mt-4"><strong>Important:</strong> For security reasons, please update your username and password as soon as you log in. This will ensure your account remains secure and personalized for your needs.</p>
-                  <p>Once you finish the course, you’ll gain access to my exclusive mentorship group, where you’ll:</p>
-                  <ul>
-                  <li>Receive premium materials not available in the course.</li>
-                  <li>Get personalized guidance and advanced strategies to boost your results.</li>
-                  <li>Connect with like-minded individuals striving for success.</li>
-                  </ul>
-                  <p>Connect with like-minded individuals striving for success.<br>So, stay consistent, work through the lessons, and take that next step toward achieving massive income.</p>
-                  <p class="text-gray-700 mt-4">Let’s achieve massive success together!</p>
-                  <p class="text-gray-700 mt-4">Best regards,</p>
-                  <p class="text-gray-700 mt-2">Coach Adams</p>
-                  <p class="text-gray-700"><em>Massive Income in Affiliate Marketing</em></p>
-              </div>
-          </div>
-      </body>
-      </html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Email</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Roboto', sans-serif; background-color: #f7fafc; padding: 2.5rem;">
+    <div style="max-width: 768px; margin: auto; background-color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; overflow: hidden; border: 1px solid #e2e8f0;">
+        <div style="background-color: #2b6cb0; color: white; text-align: center; padding: 2rem;">
+            <h1 style="font-size: 1.75rem; font-weight: bold; margin: 0;">Welcome to "Massive Income in Affiliate Marketing"!</h1>
+        </div>
+        <div style="padding: 2rem; line-height: 1.6;">
+            <p style="color: #4a5568; font-size: 1.125rem;">Dear ${email},</p>
+            <p style="color: #4a5568; margin-top: 1rem;">Thank you for joining <em>Massive Income in Affiliate Marketing by Coach Adams</em>! I’m thrilled to guide you through this exciting journey.</p>
+            <p style="color: #4a5568; margin-top: 1rem;">Here are your temporary login details:</p>
+            <ul style="list-style-type: disc; padding-left: 1.5rem; color: #4a5568; margin-top: 0.5rem;">
+                <li><strong>Email:</strong> ${email}</li>
+                <li><strong>Password:</strong> 12345678</li>
+            </ul>
+            <p style="color: #4a5568; margin-top: 1rem;">To log in, please visit <a href="${process.env.NEXTAUTH_URL}/login" style="color: #3182ce; text-decoration: underline; font-weight: bold;">${process.env.NEXTAUTH_URL}/login</a>.</p>
+            <p style="color: #4a5568; margin-top: 1rem;"><strong>Important:</strong> For security reasons, please update your username and password as soon as you log in. This will ensure your account remains secure and personalized for your needs.</p>
+            <p style="color: #4a5568; margin-top: 1rem;">Once you finish the course, you’ll gain access to my exclusive mentorship group, where you’ll:</p>
+            <ul style="color: #4a5568; margin-left: 1.5rem;">
+                <li>Receive premium materials not available in the course.</li>
+                <li>Get personalized guidance and advanced strategies to boost your results.</li>
+                <li>Connect with like-minded individuals striving for success.</li>
+            </ul>
+            <p style="color: #4a5568; margin-top: 1rem;">Connect with like-minded individuals striving for success.<br>So, stay consistent, work through the lessons, and take that next step toward achieving massive income.</p>
+            <p style="color: #4a5568; margin-top: 1rem;">Let’s achieve massive success together!</p>
+            <p style="color: #4a5568; margin-top: 1rem;">Best regards,</p>
+            <p style="color: #4a5568; margin-top: 0.5rem;">Coach Adams</p>
+            <p style="color: #4a5568;"><em>Massive Income in Affiliate Marketing</em></p>
+        </div>
+    </div>
+</body>
+</html>
     `,
     };
 
