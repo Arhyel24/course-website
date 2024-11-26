@@ -63,7 +63,7 @@ export function NavBar() {
   };
 
   return (
-    <Navbar fluid rounded className="bg-white dark:bg-gray-800">
+    <Navbar fluid rounded className="bg-white dark:bg-gray-800 fixed w-full">
       <Navbar.Brand href="/">
         <Image
           width={30}
