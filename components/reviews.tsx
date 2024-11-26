@@ -69,7 +69,7 @@ const Reviews = () => {
         </p>
       </div>
 
-      <div className="gap-8 space-y-8 md:columns-2 lg:columns-3">
+      <div className="gap-8 space-y-8 md:columns-2 lg:columns-3 p-4">
         {reviewsData.map((review, index) => (
           <div
             key={index}
