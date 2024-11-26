@@ -106,11 +106,14 @@ export function NavBar() {
             <Dropdown.Item href="/">Dashboard</Dropdown.Item>
             {isAdmin && (
               <>
-                <Dropdown.Item href="/admin">View users</Dropdown.Item>
-                <Dropdown.Item href="/admin">View Courses</Dropdown.Item>
+                <Dropdown.Item href="/view/admin">View users</Dropdown.Item>
+                <Dropdown.Item href="/view/courses">View Courses</Dropdown.Item>
               </>
             )}
-            <Dropdown.Item onClick={() => setOpenModal(true)}>
+            <Dropdown.Item
+              href="/user/profile"
+              onClick={() => setOpenModal(true)}
+            >
               Settings
             </Dropdown.Item>
             <Dropdown.Divider />
