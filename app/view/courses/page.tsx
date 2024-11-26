@@ -2,7 +2,12 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Profile({ user }) {
+export default function Profile() {
+  const user = {
+    image: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
+    name: "Shadow being",
+    email: "tryme@gmail.com",
+  };
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
