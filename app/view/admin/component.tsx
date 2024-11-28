@@ -24,7 +24,7 @@ export default function AdminComponent() {
   }
 
   const fetchUsers = async () => {
-    const usersResponse = await fetch(`/api/getallusers`, { method: "GET" });
+    const usersResponse = await fetch(`/api/getallusers`, { method: "POST" });
 
     // Check if the response is OK
     if (!usersResponse.ok) {
