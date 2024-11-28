@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const courses = await Course.find({}).populate("chapters").lean();
 
-    console.log(courses);
+    // console.log(courses);
 
     // Return the users with a 200 status code
     return NextResponse.json({ courses }, { status: 200 });

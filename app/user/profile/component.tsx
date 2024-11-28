@@ -4,30 +4,81 @@ import { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { FileInput, Label, TextInput } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import LoadingRing from "@/components/loading-ring";
 
 export default function ProfileComp({ user }) {
   const [newPassword, setNewPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
-  const [username, setUsername] = useState(user.name);
-  const [image, setImage] = useState(user.image);
+  const [username, setUsername] = useState("");
+  const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handlePasswordChange = async (e) => {
+  const router = useRouter();
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(""); // Reset error message
 
-    // Validate passwords
-    if (newPassword !== repeatPassword) {
-      setError("Passwords do not match!");
+    setError("");
+    setIsLoading(true);
+
+    // Client-side validation
+    if (!oldPassword || !newPassword || !repeatPassword) {
+      setError("All fields are required");
+      setIsLoading(false);
       return;
     }
 
-    // Here you would typically send the new password to your API
-    // For example:
-    // const response = await fetch('/api/change-password', { ... });
+    // Validate passwords
+    if (newPassword !== repeatPassword) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
 
-    toast("Password updated successfully!");
+    // Optional: Additional password strength validation
+    if (newPassword.length < 8) {
+      setError("Password must be at least 8 characters long");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/change-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          currentPassword: oldPassword,
+          newPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(data.message || "Password updated successfully!");
+
+        setOldPassword("");
+        setNewPassword("");
+        setRepeatPassword("");
+
+        router.refresh();
+      } else {
+        setError(data.message || "Failed to change password");
+      }
+    } catch (error) {
+      console.error("Password change error:", error);
+      setError("An unexpected error occurred");
+      toast.error("Unable to change password");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleUserDetailsUpdate = async (e) => {
@@ -45,18 +96,21 @@ export default function ProfileComp({ user }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto">
+    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto mt-20">
       {/* User Details Section */}
       <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full mb-6">
         <Image
-          src={image}
+          src={user.image}
           alt="User  Avatar"
           width={100}
           height={100}
           className="rounded-full mb-4"
         />
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-          {username}
+          {user.name}
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          {user.email}
         </h2>
         <form className="mt-4 w-full" onSubmit={handleUserDetailsUpdate}>
           <div className="flex w-full items-center justify-center">
@@ -134,6 +188,22 @@ export default function ProfileComp({ user }) {
               htmlFor="new-password"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
+              Old Password
+            </label>
+            <input
+              type="password"
+              id="old-password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              required
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div className="mt-4">
+            <label
+              htmlFor="new-password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               New Password
             </label>
             <input
@@ -166,7 +236,13 @@ export default function ProfileComp({ user }) {
             type="submit"
             className="mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Update Password
+            {isLoading ? (
+              <>
+                <LoadingRing /> Changing password
+              </>
+            ) : (
+              "Update Password"
+            )}
           </button>
         </form>
       </div>
