@@ -7,17 +7,153 @@ import { FileInput, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import LoadingRing from "@/components/loading-ring";
 
+// Add type for user
+interface User {
+  email: string;
+  username?: string;
+  image?: string;
+}
+
 export default function ProfileComp({ user }) {
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
-  const [image, setImage] = useState("");
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const apiKey = process.env.NEXT_PUBLIC_IMGBB_APIKEY as string;
+  const imgApiUrl = process.env.NEXT_PUBLIC_IMGBB_URL as string;
 
   const router = useRouter();
+
+  const uploadToImgBB = async (file: File): Promise<string | null> => {
+    // Validate API configuration
+    if (!apiKey || !imgApiUrl) {
+      setUploadError("Image upload service is not configured");
+      return null;
+    }
+
+    // Validate file
+    if (!file) {
+      setUploadError("No file selected");
+      return null;
+    }
+
+    // File size validation
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSizeInBytes) {
+      toast.error("File size exceeds 5MB limit");
+      return null;
+    }
+
+    // Allowed image types
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Invalid file type. Please upload an image.");
+      return null;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("key", apiKey);
+
+    try {
+      const response = await fetch(imgApiUrl, {
+        method: "POST",
+        body: formData, // Let browser set content-type
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Validate response
+      if (!data?.data?.url) {
+        setUploadError("Invalid response from image upload service");
+      }
+
+      return data.data.url;
+    } catch (error) {
+      console.error("Image upload error:", error);
+      setUploadError("Failed to upload image");
+      return null;
+    }
+  };
+
+  const updateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setUserLoading(true);
+
+    try {
+      // Validation
+      if (!username.trim()) {
+        setError("Username cannot be empty");
+        return;
+      }
+
+      // Prepare update payload
+      const updatePayload: {
+        email: string;
+        username: string;
+        imageUrl?: string;
+      } = {
+        email: user.email,
+        username: username.trim(),
+      };
+
+      // Upload image if file exists
+      if (imageFile) {
+        const imgUrl = await uploadToImgBB(imageFile);
+        if (imgUrl) {
+          updatePayload.imageUrl = imgUrl;
+        } else {
+          // Image upload failed, but continue with user update
+          toast.error("Image upload failed, but will update other details");
+        }
+      }
+
+      // Send update request
+      const response = await fetch("/api/update-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatePayload),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(data.message || "Profile updated successfully!");
+        router.refresh(); // Refresh to get updated data
+      } else {
+        // Handle server-side validation errors
+        setError(data.message || "Failed to update profile");
+        toast.error(data.message || "Update failed");
+      }
+    } catch (error) {
+      console.error("User update error:", error);
+
+      // Differentiate error types
+      if (error instanceof Error) {
+        setError(error.message);
+        toast.error(error.message);
+      } else {
+        setError("An unexpected error occurred");
+        toast.error("Unable to update profile");
+      }
+    } finally {
+      setUserLoading(false);
+    }
+  };
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,42 +217,52 @@ export default function ProfileComp({ user }) {
     }
   };
 
-  const handleUserDetailsUpdate = async (e) => {
-    e.preventDefault();
-    // Here you would typically send the updated username and image to your API
-    // For example:
-    // const formData = new FormData();
-    // formData.append("username", username);
-    // if (imageFile) {
-    //   formData.append("image", imageFile);
-    // }
-    // const response = await fetch('/api/update-user-details', { method: 'POST', body: formData });
+  // Handle image file selection
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      setImageFile(file);
 
-    toast("User  details updated successfully!");
+      // Create image preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <div className="p-6 md:p-10 max-w-2xl mx-auto">
       {/* User Details Section */}
       <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mt-20 w-full mb-6">
-        <Image
-          src={user.image}
-          alt="User  Avatar"
-          width={100}
-          height={100}
-          className="rounded-full mb-4"
-        />
+        {imagePreview ? (
+          <div className="mt-2">
+            <Image
+              src={imagePreview}
+              alt="Preview"
+              width={100}
+              height={100}
+              className="rounded-full mb-4"
+            />
+          </div>
+        ) : (
+          <Image
+            src={user.image}
+            alt="User  Avatar"
+            width={100}
+            height={100}
+            className="rounded-full mb-4"
+          />
+        )}
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           {user.name}
         </h2>
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           {user.email}
         </h2>
-        <form
-          className="mt-4 w-full"
-          onSubmit={handleUserDetailsUpdate}
-          autoComplete="off"
-        >
+        <form className="mt-4 w-full" onSubmit={updateUser} autoComplete="off">
           <div className="flex w-full items-center justify-center">
             <Label
               htmlFor="dropzone-file"
@@ -146,16 +292,17 @@ export default function ProfileComp({ user }) {
                   SVG, PNG, JPG or GIF (MAX. 800x400px)
                 </p>
               </div>
-              <FileInput
+              <input
                 id="dropzone-file"
-                // onChange={(e) => {
-                //   setImageFile(e.target.files[0]);
-                //   setImage(URL.createObjectURL(e.target.files[0]));
-                // }}
+                type="file"
+                accept="image/*"
                 className="hidden"
+                onChange={handleImageChange}
+                disabled={userLoading}
               />
             </Label>
           </div>
+
           <div className="mt-4">
             <label
               htmlFor="username"
@@ -165,18 +312,29 @@ export default function ProfileComp({ user }) {
             </label>
             <TextInput
               id="username"
-              placeholder={user.username}
+              placeholder={user.name}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+          {uploadError && (
+            <div className="text-red-500 text-sm">{uploadError}</div>
+          )}
           <button
             type="submit"
-            className="mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className={`mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              userLoading && "cursor-not-allowed"
+            }`}
           >
-            Update User Details
+            {userLoading ? (
+              <>
+                <LoadingRing size="sm" /> Upadating user
+              </>
+            ) : (
+              "Update User Details"
+            )}
           </button>
         </form>
       </div>
