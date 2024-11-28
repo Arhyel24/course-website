@@ -4,13 +4,14 @@ import { Card, Button, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
 import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { MyFooter } from "@/components/footer";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function AdminComponent({ users }) {
+export default function AdminComponent() {
   const [tab, setTab] = useState("table");
+  const [users, setUsers] = useState([]);
   const [enrolUser, setEnrolUser] = useState(false);
   const [email, setEmail] = useState("");
   const [registering, setRegistering] = useState(false);
@@ -21,6 +22,27 @@ export default function AdminComponent({ users }) {
     setEnrolUser(false);
     setEmail("");
   }
+
+  const fetchUsers = async () => {
+    const usersResponse = await fetch(`/api/getallusers`, { method: "GET" });
+
+    // Check if the response is OK
+    if (!usersResponse.ok) {
+      toast.error("Failed to get users");
+    }
+
+    const data = await usersResponse.json();
+
+    setUsers(data.users);
+
+    if (!users) {
+      toast.error("Failed to load users");
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   async function signUp() {
     setRegistering(true);
