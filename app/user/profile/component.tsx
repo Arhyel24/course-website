@@ -96,7 +96,7 @@ export default function ProfileComp({ user }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 md:p-10 max-w-2xl mx-auto mt-20">
+    <div className="flex flex-col items-center p-6 md:p-10 max-w-2xl mx-auto mt-20">
       {/* User Details Section */}
       <div className="flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 w-full mb-6">
         <Image
@@ -238,7 +238,7 @@ export default function ProfileComp({ user }) {
           >
             {isLoading ? (
               <>
-                <LoadingRing /> Changing password
+                <LoadingRing size="sm" /> Changing password
               </>
             ) : (
               "Update Password"
