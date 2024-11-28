@@ -112,7 +112,11 @@ export default function ProfileComp({ user }) {
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           {user.email}
         </h2>
-        <form className="mt-4 w-full" onSubmit={handleUserDetailsUpdate}>
+        <form
+          className="mt-4 w-full"
+          onSubmit={handleUserDetailsUpdate}
+          autoComplete="off"
+        >
           <div className="flex w-full items-center justify-center">
             <Label
               htmlFor="dropzone-file"
@@ -182,7 +186,11 @@ export default function ProfileComp({ user }) {
         <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
           Change Password
         </h3>
-        <form className="w-full" onSubmit={handlePasswordChange}>
+        <form
+          className="w-full"
+          onSubmit={handlePasswordChange}
+          autoComplete="off"
+        >
           <div className="mt-4">
             <label
               htmlFor="new-password"
