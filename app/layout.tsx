@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { flowbiteTheme } from "./theme";
 import AppProvider from "@/lib/providers";
+import Adsense from "@/actions/adsense";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Adsense pId="4728250862053645" />
         <ThemeModeScript />
       </head>
       <Flowbite theme={{ theme: flowbiteTheme }}>
