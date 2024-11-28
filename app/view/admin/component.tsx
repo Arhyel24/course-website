@@ -152,8 +152,8 @@ export default function AdminComponent() {
             <UsersTable users={users} />
           ) : users.length > 0 ? (
             <div className="flex flex-wrap gap-6 pt-6 pb-6">
-              {users.map((user) => (
-                <UserCard key={user.username} user={user} />
+              {users.map((user, i) => (
+                <UserCard key={i} user={user} />
               ))}
             </div>
           ) : (
