@@ -69,7 +69,7 @@ export default function ProfileComp({ user }) {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        toast.error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -94,10 +94,10 @@ export default function ProfileComp({ user }) {
 
     try {
       // Validation
-      if (!username.trim()) {
-        setError("Username cannot be empty");
-        return;
-      }
+      // if (!username.trim()) {
+      //   setError("Username cannot be empty");
+      //   return;
+      // }
 
       // Prepare update payload
       const updatePayload: {
@@ -106,7 +106,7 @@ export default function ProfileComp({ user }) {
         imageUrl?: string;
       } = {
         email: user.email,
-        username: username.trim(),
+        username: username.trim() || user.name,
       };
 
       // Upload image if file exists
