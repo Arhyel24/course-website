@@ -54,28 +54,28 @@ const Reviews: React.FC = () => {
       >
         {reviewsData.map((review, index) => (
           <div
-            key={index}
-            className="inline-block p-8 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-xl rounded-xl shadow-gray-600/10"
-          >
-            <div className="flex gap-4 items-start">
-              <Image
-                className="w-12 h-12 rounded-full"
-                src={review.avatar}
-                alt="user avatar"
-                width={400}
-                height={400}
-                loading="lazy"
-              />
-              <div className="flex-1 flex justify-between items-start">
-                <div>
-                  <h6 className="text-lg font-medium text-gray-700 dark:text-gray-300">
-                    {review.name}
-                  </h6>
-                </div>
-              </div>
-              <p className="mt-8 dark:text-gray-300">{review.comment}</p>
-            </div>
-          </div>
+  key={index}
+  className="inline-block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg transition-transform transform hover:scale-105"
+>
+  <div className="flex gap-4 items-start">
+    <Image
+      className="w-12 h-12 rounded-full"
+      src={review.avatar}
+      alt="user avatar"
+      width={400}
+      height={400}
+      loading="lazy"
+    />
+    <div className="flex-1">
+      <h6 className="text-lg font-medium text-gray-700 dark:text-gray-300">
+        {review.name}
+      </h6>
+      <p className="mt-2 text-gray-600 dark:text-gray-400">
+        {review.comment}
+      </p>
+    </div>
+  </div>
+</div>
         ))}
       </div>
     </section>
