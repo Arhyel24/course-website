@@ -42,9 +42,6 @@ const Reviews: React.FC = () => {
   return (
     <section className="pb-12 mx-auto md:pb-20 max-w-7xl">
       <div className="py-4 text-center md:py-8">
-        <h4 className="text-base font-bold tracking-wide text-center uppercase text-teal-600">
-          Reviews
-        </h4>
         <p className="mt-2 tracking-tight text-gray-900 dark:text-gray-200 text-xl md:text-2xl">
           We have some fans.
         </p>
