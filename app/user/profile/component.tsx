@@ -60,7 +60,6 @@ export default function ProfileComp({ user }) {
 
     const formData = new FormData();
     formData.append("image", file);
-    formData.append("key", apiKey);
 
     try {
       const response = await fetch(imgApiUrl, {

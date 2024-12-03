@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: 'Roboto', sans-serif; background-color: #f7fafc; padding: 2.5rem;">
+<body style="font-family: 'Roboto', sans-serif; background-color: #f7fafc; padding: 1.5rem;">
     <div style="max-width: 768px; margin: auto; background-color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; overflow: hidden; border: 1px solid #e2e8f0;">
         <div style="background-color: #2b6cb0; color: white; text-align: center; padding: 2rem;">
             <h1 style="font-size: 1.75rem; font-weight: bold; margin: 0;">Welcome to "Massive Income in Affiliate Marketing"!</h1>
