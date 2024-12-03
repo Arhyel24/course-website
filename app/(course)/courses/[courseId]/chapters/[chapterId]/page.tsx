@@ -4,6 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import { CourseProgressButton } from "./_components/course-progress-button";
 import getChapter from "@/actions/getChapter";
 import { ChapterVideo } from "./_components/chapter-video";
+import { Suspense } from "react";
+import Loading from "../../loading";
 
 export default async function ChapterDetailsPage({
   params,
@@ -17,34 +19,36 @@ export default async function ChapterDetailsPage({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen p-4 pt-12">
-      <div className="mx-auto flex max-w-4xl flex-col pb-20 pt-12">
-        <div className="w-full ">
-          <ChapterVideo
-            videoUrl={chapter.videoUrl as string}
-            title={chapter.title}
-          />
-        </div>
-
-        <div className="mt-6 space-y-6">
-          <div className="flex flex-col items-center justify-between md:flex-row">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 md:mb-0">
-              {chapter.title}
-            </h2>
-
-            <CourseProgressButton
-              courseId={params.courseId}
-              nextChapterId={nextChapterId}
+    <Suspense fallback={<Loading />}>
+      <div className="bg-white dark:bg-gray-900 min-h-screen p-4 pt-12">
+        <div className="mx-auto flex max-w-4xl flex-col pb-20 pt-12">
+          <div className="w-full ">
+            <ChapterVideo
+              videoUrl={chapter.videoUrl as string}
+              title={chapter.title}
             />
           </div>
 
-          <Separator className="dark:bg-gray-700" />
+          <div className="mt-6 space-y-6">
+            <div className="flex flex-col items-center justify-between md:flex-row">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 md:mb-0">
+                {chapter.title}
+              </h2>
 
-          <div className="prose dark:prose-invert max-w-full">
-            <Preview value={chapter.description!} />
+              <CourseProgressButton
+                courseId={params.courseId}
+                nextChapterId={nextChapterId}
+              />
+            </div>
+
+            <Separator className="dark:bg-gray-700" />
+
+            <div className="prose dark:prose-invert max-w-full">
+              <Preview value={chapter.description!} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
