@@ -66,11 +66,6 @@ export default function ProfileComp({ user }) {
       return null;
     }
 
-    if (!isSquareImage(file)) {
-      toast.error("Image must be square (width must equal height).");
-      return null;
-    }
-
     const formData = new FormData();
     formData.append("image", file);
 
@@ -107,12 +102,6 @@ export default function ProfileComp({ user }) {
     setUserLoading(true);
 
     try {
-      // Validation
-      // if (!username.trim()) {
-      //   setError("Username cannot be empty");
-      //   return;
-      // }
-
       // Prepare update payload
       const updatePayload: {
         email: string;
@@ -150,7 +139,7 @@ export default function ProfileComp({ user }) {
         router.refresh(); // Refresh to get updated data
       } else {
         // Handle server-side validation errors
-        setError(data.message || "Failed to update profile");
+        setUploadError(data.message || "Failed to update profile");
         toast.error(data.message || "Update failed");
       }
     } catch (error) {
@@ -161,8 +150,8 @@ export default function ProfileComp({ user }) {
         setError(error.message);
         toast.error(error.message);
       } else {
-        setError("An unexpected error occurred");
-        toast.error("Unable to update profile");
+        setUploadError("An unexpected error occurred");
+        setUploadError("Unable to update profile");
       }
     } finally {
       setUserLoading(false);
@@ -232,10 +221,18 @@ export default function ProfileComp({ user }) {
   };
 
   // Handle image file selection
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       const file = files[0];
+
+      const isSquare = await isSquareImage(file);
+
+      if (!isSquare) {
+        toast.error("Image must be square (width must equal height).");
+        return null;
+      }
+
       setImageFile(file);
 
       // Create image preview
@@ -325,11 +322,11 @@ export default function ProfileComp({ user }) {
               Username
             </label>
             <TextInput
+              autoComplete="off"
               id="username"
               placeholder={user.name}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -338,13 +335,13 @@ export default function ProfileComp({ user }) {
           )}
           <button
             type="submit"
-            className={`mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+            className={`mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center ${
               userLoading && "cursor-not-allowed"
             }`}
           >
             {userLoading ? (
               <>
-                <LoadingRing size="sm" /> Upadating user
+                <LoadingRing size="sm" /> Updating user
               </>
             ) : (
               "Update User Details"
@@ -372,6 +369,7 @@ export default function ProfileComp({ user }) {
             </label>
             <input
               type="password"
+              autoComplete="off"
               id="old-password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
@@ -388,6 +386,7 @@ export default function ProfileComp({ user }) {
             </label>
             <input
               type="password"
+              autoComplete="off"
               id="new-password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -414,11 +413,11 @@ export default function ProfileComp({ user }) {
           {error && <p className="text-red-500 mt-2">{error}</p>}
           <button
             type="submit"
-            className="mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="mt-6 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center"
           >
             {isLoading ? (
               <>
-                <LoadingRing size="sm" /> Changing password
+                <LoadingRing size="sm" className="mr-2" /> Changing password
               </>
             ) : (
               "Update Password"

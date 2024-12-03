@@ -14,9 +14,9 @@ const LoadingRing: React.FC<LoadingRingProps> = ({
   className = "",
 }) => {
   const sizeStyles = {
-    sm: { width: 24, height: 24, borderWidth: 2 },
-    md: { width: 40, height: 40, borderWidth: 4 },
-    lg: { width: 64, height: 64, borderWidth: 6 },
+    sm: { width: 18, height: 18, borderWidth: 2 },
+    md: { width: 36, height: 36, borderWidth: 4 },
+    lg: { width: 52, height: 52, borderWidth: 6 },
   };
 
   return (
