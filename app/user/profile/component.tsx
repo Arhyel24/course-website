@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { FileInput, Label, TextInput } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import LoadingRing from "@/components/loading-ring";
+import { isSquareImage } from "@/actions/is-sqaure";
 
 // Add type for user
 interface User {
@@ -52,9 +53,21 @@ export default function ProfileComp({ user }) {
     }
 
     // Allowed image types
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ];
+
     if (!allowedTypes.includes(file.type)) {
       toast.error("Invalid file type. Please upload an image.");
+      return null;
+    }
+
+    if (!isSquareImage(file)) {
+      toast.error("Image must be square (width must equal height).");
       return null;
     }
 
@@ -64,11 +77,12 @@ export default function ProfileComp({ user }) {
     try {
       const response = await fetch(imgApiUrl, {
         method: "POST",
-        body: formData, // Let browser set content-type
+        body: formData,
       });
 
       if (!response.ok) {
         toast.error(`HTTP error! status: ${response.status}`);
+        return null;
       }
 
       const data = await response.json();
@@ -76,6 +90,7 @@ export default function ProfileComp({ user }) {
       // Validate response
       if (!data?.data?.url) {
         setUploadError("Invalid response from image upload service");
+        return null;
       }
 
       return data.data.url;
@@ -288,7 +303,7 @@ export default function ProfileComp({ user }) {
                   and drop
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  SVG, PNG, JPG or GIF (MAX. 5MB) & aspect ratio: 1/1
                 </p>
               </div>
               <input
