@@ -42,7 +42,7 @@ export default function AdminComponent() {
 
   useEffect(() => {
     fetchUsers();
-  }, [registering]);
+  }, [fetchUsers]);
 
   async function signUp() {
     setRegistering(true);

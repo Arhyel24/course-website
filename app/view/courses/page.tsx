@@ -45,9 +45,8 @@ const ManageCourses: React.FC = () => {
 
       // Save the new chapter to the database
       try {
-        const savedChapter = await newChapter.save();
-
-        setChapters((prevChapters) => [...prevChapters, savedChapter as any]);
+        // const savedChapter = await newChapter.save();
+        // setChapters((prevChapters) => [...prevChapters, newChapter]);
 
         // Reset chapter inputs
         setChapterTitle("");
