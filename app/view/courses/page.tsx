@@ -1,8 +1,8 @@
 "use client";
 // pages/manage-courses.tsx
-import { Navbar } from "@/app/_components/navbar";
 import { Chapter, Course, IChapter, ICourse } from "@/app/models/Course";
 import { MyFooter } from "@/components/footer";
+import { NavBar } from "@/components/navbar";
 import React, { useState } from "react";
 
 const ManageCourses: React.FC = () => {
@@ -102,7 +102,7 @@ const ManageCourses: React.FC = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavBar />
       <main className="container mx-auto p-4">
         <h1 className="text-2xl font-bold">Manage Courses</h1>
 
