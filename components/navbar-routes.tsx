@@ -21,29 +21,32 @@ export const NavbarRoutes = () => {
   const isSearchPage = pathname?.includes("/search");
 
   return (
-    <>
-      {isSearchPage && (
-        <div className="hidden md:block">
-          <SearchInput />
-        </div>
-      )}
-      <div className="ml-auto flex gap-x-2">
-        <DarkThemeToggle />
-        {isTeacherPage || isCoursePage ? (
+  <>
+    {isSearchPage && (
+      <div className="hidden md:block">
+        <SearchInput />
+      </div>
+    )}
+    <div className="ml-auto flex gap-x-2">
+      <DarkThemeToggle />
+      {(isTeacherPage || isCoursePage) && (
+        <>
+          {isTeacher(email) && (
+            <Link href="/admin/courses">
+              <Button size="sm" variant="ghost">
+                Teacher mode
+              </Button>
+            </Link>
+          )}
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="mr-2 h-4 w-4" />
               Exit
             </Button>
           </Link>
-        ) : isTeacher(email) ? (
-          <Link href="/admin/courses">
-            <Button size="sm" variant="ghost">
-              Teacher mode
-            </Button>
-          </Link>
-        ) : null}
-      </div>
-    </>
-  );
+        </>
+      )}
+    </div>
+  </>
+);
 };

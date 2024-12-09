@@ -37,7 +37,7 @@ export default function CourseSidebarItem({
           : "text-slate-500 hover:bg-slate-300/20 hover:text-slate-600 dark:text-slate-400 hover:dark:bg-slate-600/20 hover:dark:text-slate-200"
       )}
     >
-      <div className="flex items-center gap-x-2 py-4">
+      <div className="flex gap-x-2 py-4">
         <Icon
           size={22}
           className={cn("transition-colors", {
