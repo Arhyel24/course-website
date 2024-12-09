@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { DarkThemeToggle } from "flowbite-react";
 import { useSession } from "next-auth/react";
 
-export const NavbarRoutes = ({ email }) => {
+export const NavbarRoutes = () => {
   const { data: session } = useSession();
   
   const email = session?.user?.email;
