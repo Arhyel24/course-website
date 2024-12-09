@@ -1,11 +1,12 @@
 import { ICourse } from "@/app/models/Course";
 import CourseMobileSidebar from "./course-mobile-sidebar";
 import { NavbarRoutes } from "@/components/navbar-routes";
+import authOptions from "@/lib/AuthOptions";
 import { getServerSession } from "next-auth";
 
 type CourseNavbarProps = { course: ICourse; progressCount: number };
 
-export default function CourseNavbar({
+export default async function CourseNavbar({
   course,
   progressCount,
 }: CourseNavbarProps) {
