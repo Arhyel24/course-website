@@ -25,7 +25,7 @@ export default function Hero() {
             width={600}
             height={600}
             alt="image here"
-            src="https://loremflickr.com/g/600/600/girl"
+            src="https://i.ibb.co/Tw6kQJ4/IMG-20241208-WA0043.jpg"
           />
         </div>
       </div>
