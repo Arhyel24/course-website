@@ -8,6 +8,7 @@ export interface IChapter extends Document {
   title: string;
   description?: string | null;
   videoUrl?: string | null;
+  courseId: Types.ObjectId;
   order: number;
   createdAt?: Date;
   updatedAt?: Date;
@@ -39,6 +40,7 @@ const chapterSchema = new Schema(
       type: String,
       default: null,
     },
+    courseId: { type: Schema.Types.ObjectId, ref: "Course", required: true }, 
     order: {
       type: Number,
       required: [true, "Chapter order is required"],
