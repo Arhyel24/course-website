@@ -30,7 +30,7 @@ export default async function getChapter({
       return { chapter: null, course, nextChapterId: null };
     }
 
-    const nextChapter = (await Chapter.find({
+    const nextChapter = (await Chapter.findOne({
       courseId,
       order: chapter.order + 1,
     })) as IChapter | null;
