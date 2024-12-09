@@ -19,36 +19,33 @@ export default async function getChapter({
   try {
     await connectToDb();
 
-    const course = await Course.findById(courseId).populate({
-      path: "chapters",
-      options: { sort: { order: 1 } }, // Ensure chapters are sorted by "order"
-    });
-
+    const course = await Course.findById(courseId).populate("chapters");
     if (!course) {
-      console.error("Course not found");
+      console.log("Course not found");
       return { chapter: null, course: null, nextChapterId: null };
     }
 
-    const chapter = course.chapters.find(
-      (ch) => ch._id.toString() === chapterId
-    ) as IChapter | null;
-
+    const chapter = (await Chapter.findById(chapterId)) as IChapter | null;
     if (!chapter) {
-      console.error("Chapter not found");
       return { chapter: null, course, nextChapterId: null };
     }
 
-    const nextChapter = course.chapters.find(
-      (ch) => ch.order === chapter.order + 1
-    );
+    const nextChapter = (await Chapter.findOne({
+      courseId,
+      order: chapter.order + 1,
+    })) as IChapter | null;
 
     return {
       chapter,
       course,
-      nextChapterId: nextChapter ? nextChapter._id.toString() : null,
+      nextChapterId: nextChapter ? nextChapter.id : null,
     };
   } catch (error) {
     console.error("Error fetching chapter:", error);
-    return { chapter: null, course: null, nextChapterId: null };
+    return {
+      chapter: null,
+      course: null,
+      nextChapterId: null,
+    };
   }
 }
