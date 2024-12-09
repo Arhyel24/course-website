@@ -15,10 +15,10 @@ export default async function CourseLayout({
 
   const id = params.courseId;
 
-  const course = await Course.findOne({ id }).populate("chapters");
+  const course = await Course.findById(id).populate("chapters");
 
   console.log("id in layout: ", course?.id);
-  console.log("course in layout: ", course);
+  //console.log("course in layout: ", course);
 
   if (!course) {
     return redirect("/");
