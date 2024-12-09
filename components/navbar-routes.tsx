@@ -11,6 +11,9 @@ import { DarkThemeToggle } from "flowbite-react";
 import { useSession } from "next-auth/react";
 
 export const NavbarRoutes = ({ email }) => {
+  const { data: session } = useSession();
+  
+  const email = session?.user?.email;
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
