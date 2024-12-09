@@ -14,12 +14,11 @@ export default async function CourseLayout({
   await connectToDb();
 
   const id = params.courseId;
-  // console.log(id);
 
   const course = await Course.findOne({ id }).populate("chapters");
 
-  // console.log("id in layout: ", course?.id);
-  // console.log("course in layout: ", course);
+  console.log("id in layout: ", course?.id);
+  console.log("course in layout: ", course);
 
   if (!course) {
     return redirect("/");

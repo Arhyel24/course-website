@@ -10,12 +10,7 @@ import { Button } from "./ui/button";
 import { DarkThemeToggle } from "flowbite-react";
 import { useSession } from "next-auth/react";
 
-export const NavbarRoutes = () => {
-  const { data: session } = useSession();
-  const email = session?.user?.email;
-
-  console.log("email in navbar: ", email);
-
+export const NavbarRoutes = ({ email }) => {
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
@@ -39,7 +34,7 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : isTeacher(email) ? (
-          <Link href="/teacher/courses">
+          <Link href="/admin/courses">
             <Button size="sm" variant="ghost">
               Teacher mode
             </Button>
