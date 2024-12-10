@@ -41,7 +41,7 @@ export default async function getChapter({
     return {
       chapter,
       course,
-      nextChapterId: nextChapter ? nextChapter._id : null, // Use _id or id based on your model
+      nextChapterId: nextChapter ? nextChapter.id : null, // Use _id or id based on your model
     };
   } catch (error) {
     console.error("Error fetching chapter:", error);
