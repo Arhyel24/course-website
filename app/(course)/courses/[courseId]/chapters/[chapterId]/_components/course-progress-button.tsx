@@ -47,7 +47,7 @@ export const CourseProgressButton = ({
         border border-gray-300 dark:border-gray-600
         transition-colors duration-200 ease-in-out`}
     >
-      {!nextChapterId ? <>"Completed"  <Icon className="ml-2 h-4 w-4" /></>:<> "Next chapter" <IconSuccess className="ml-2 h-4 w-4" /></>}
+      {!nextChapterId ? <>Completed  <Icon className="ml-2 h-4 w-4" /></>:<> Next chapter <IconSuccess className="ml-2 h-4 w-4" /></>}
      
     </Button>
   );
