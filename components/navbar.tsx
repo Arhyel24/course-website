@@ -28,7 +28,7 @@ export function NavBar() {
           alt="miam affiliate"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          MIAM Affiliate
+          MASSIVE INCOME IN AFFILIATE MARKETING
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2 gap-2">

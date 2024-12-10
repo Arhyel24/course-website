@@ -45,6 +45,20 @@ export default async function ChapterDetailsPage({
 
             <div className="prose dark:prose-invert max-w-full">
               <Preview value={chapter.description!} />
+              {!nextChapterId && (<div className="max-w-md p-6 text-center bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:text-gray-200">
+                      <h2 className="text-2xl font-bold mb-4">🎉 Congratulations!</h2>
+                      <p className="mb-4">
+                        You’ve successfully completed the course! Join our exclusive WhatsApp group for ongoing support, tips, and networking with like-minded learners.
+                      </p>
+                      <a
+                        href="https://chat.whatsapp.com/JQj8tQDmGTS5LA1hfmHb7Z"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-3 text-sm font-medium text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 transition-all"
+                      >
+                        Join WhatsApp Group
+                      </a>
+                    </div>)}
             </div>
           </div>
         </div>
