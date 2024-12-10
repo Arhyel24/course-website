@@ -32,7 +32,7 @@ export const NavbarRoutes = () => {
       {(isTeacherPage || isCoursePage) && (
         <>
           {isTeacher(email) && (
-            <Link href="/admin/courses">
+            <Link href="/view/courses">
               <Button size="sm" variant="ghost">
                 Teacher mode
               </Button>

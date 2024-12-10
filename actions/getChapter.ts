@@ -15,7 +15,7 @@ interface GetChapterResponse {
 export default async function getChapter({
   courseId,
   chapterId,
-}: GetChapterArgs): Promise<GetChapterResponse> {
+}: GetChapterArgs): Promise < GetChapterResponse > {
   try {
     await connectToDb();
 
@@ -25,22 +25,23 @@ export default async function getChapter({
       return { chapter: null, course: null, nextChapterId: null };
     }
 
-    const chapter = (await Chapter.findById(chapterId)) as IChapter | null;
+    const chapter = await Chapter.findById(chapterId) as IChapter | null;
     if (!chapter) {
+      console.log("Chapter not found");
       return { chapter: null, course, nextChapterId: null };
     }
 
-    const nextChapter = (await Chapter.findOne({
+    const nextChapter = await Chapter.findOne({
       courseId,
       order: chapter.order + 1,
-    })) as IChapter | null;
-    
-    console.log(nextChapter);
+    }) as IChapter | null;
+
+    console.log("Next Chapter:", nextChapter);
 
     return {
       chapter,
       course,
-      nextChapterId: nextChapter ? nextChapter.id : null,
+      nextChapterId: nextChapter ? nextChapter._id : null, // Use _id or id based on your model
     };
   } catch (error) {
     console.error("Error fetching chapter:", error);

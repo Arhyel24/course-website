@@ -37,7 +37,7 @@ export default function CourseSidebarItem({
           : "text-slate-500 hover:bg-slate-300/20 hover:text-slate-600 dark:text-slate-400 hover:dark:bg-slate-600/20 hover:dark:text-slate-200"
       )}
     >
-      <div className="flex gap-x-2 py-4">
+      <div className="flex items-center gap-x-2 py-4 flex-grow"> {/* Added flex-grow to take available space */}
         <Icon
           size={22}
           className={cn("transition-colors", {
@@ -45,12 +45,12 @@ export default function CourseSidebarItem({
             "text-slate-500 dark:text-slate-400": !isActive,
           })}
         />
-        {label}
+        <span className="text-left">{label}</span> {/* Ensure label is aligned left */}
       </div>
-
+  
       <div
         className={cn(
-          "ml-auto h-full border-2 transition-all",
+          "h-full border-2 transition-all",
           isActive
             ? "border-slate-700 dark:border-slate-200 opacity-100"
             : "border-transparent opacity-0"
