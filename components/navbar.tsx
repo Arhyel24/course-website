@@ -23,8 +23,8 @@ export function NavBar() {
         <Image
           width={30}
           height={30}
-          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-          className="mr-3 h-6 sm:h-9"
+          src="https://i.ibb.co/pnNBqgp/IMG-20241209-131541.jpg"
+          className="mr-3 h-6 sm:h-9 rounded-full"
           alt="miam affiliate"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">

@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, ChevronsRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -34,6 +34,7 @@ export const CourseProgressButton = ({
   };
 
   const Icon = CheckCircle;
+  const IconSuccess = ChevronsRight;
 
   return (
     <Button
@@ -46,8 +47,8 @@ export const CourseProgressButton = ({
         border border-gray-300 dark:border-gray-600
         transition-colors duration-200 ease-in-out`}
     >
-      {!nextChapterId ? "Completed" : "Next chapter"}
-      <Icon className="ml-2 h-4 w-4" />
+      {!nextChapterId ? <>"Completed"  <Icon className="ml-2 h-4 w-4" /></>:<> "Next chapter" <IconSuccess className="ml-2 h-4 w-4" /></>}
+     
     </Button>
   );
 };

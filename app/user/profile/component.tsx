@@ -229,7 +229,7 @@ export default function ProfileComp({ user }) {
       const isSquare = await isSquareImage(file);
 
       if (!isSquare) {
-        toast.error("Image must be square (width must equal height).");
+        toast.error("Image must be square (width must equal to height).");
         return null;
       }
 
@@ -270,9 +270,9 @@ export default function ProfileComp({ user }) {
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           {user.name}
         </h2>
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+        <p className="text-md font-semibold text-gray-900 dark:text-gray-100">
           {user.email}
-        </h2>
+        </p>
         <form className="mt-4 w-full" onSubmit={updateUser} autoComplete="off">
           <div className="flex w-full items-center justify-center">
             <Label
