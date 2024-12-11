@@ -23,8 +23,8 @@ export default function AdminComponent() {
     setEmail("");
   }
 
-  const fetchUsers = async () => {
-    const usersResponse = await fetch(`/api/getallusers`, { method: "POST" });
+  const fetchUsers = useCallback(async () => {
+  const usersResponse = await fetch(`/api/getallusers`, { method: "POST" });
 
     // Check if the response is OK
     if (!usersResponse.ok) {
@@ -38,7 +38,7 @@ export default function AdminComponent() {
     if (!users) {
       toast.error("Failed to load users");
     }
-  };
+}, []);
 
   useEffect(() => {
     fetchUsers();
