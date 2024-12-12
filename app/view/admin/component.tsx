@@ -4,7 +4,7 @@ import { Card, Button, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
 import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useCallback } from "react";
 import { MyFooter } from "@/components/footer";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
