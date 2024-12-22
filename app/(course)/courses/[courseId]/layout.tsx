@@ -17,7 +17,7 @@ export default async function CourseLayout({
 
   const course = await Course.findById(id).populate("chapters");
 
-  console.log("id in layout: ", course?.id);
+  // console.log("id in layout: ", course?.id);
   //console.log("course in layout: ", course);
 
   if (!course) {

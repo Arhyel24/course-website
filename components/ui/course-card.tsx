@@ -25,10 +25,10 @@ export default function CourseCard({
       <div className="group h-full overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
         <div className="relative aspect-video w-full overflow-hidden rounded-md">
           <Image
-            className="w-full aspect-ratio-4/3"
+            className="w-full"
             src={imageUrl}
-            width={300}
-            height={300}
+            width={200}
+            height={100}
             alt="Alt text"
           />
         </div>
