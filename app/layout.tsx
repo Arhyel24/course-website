@@ -6,6 +6,8 @@ import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { flowbiteTheme } from "./theme";
 import AppProvider from "@/lib/providers";
 import Adsense from "@/actions/adsense";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +22,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "MASSIVE INCOME IN AFFILIATE MARKETING",
-  description: "Welcome to Coach Adams Affiliate Marketing COURSE! 🚀 Are you ready to unlock your potential and transform your online income dreams into reality? Master affiliate marketing with ease and take control of your financial future.",
+  description:
+    "Welcome to Coach Adams Affiliate Marketing COURSE! 🚀 Are you ready to unlock your potential and transform your online income dreams into reality? Master affiliate marketing with ease and take control of your financial future.",
 };
 
 export default function RootLayout({
@@ -39,6 +42,8 @@ export default function RootLayout({
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200`}
           >
+            <Analytics />
+            <SpeedInsights />
             <div className="h-full">
               <main className="h-full w-full">{children}</main>
               <Toaster />
