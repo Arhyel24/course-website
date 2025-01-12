@@ -2,7 +2,7 @@ import bcryptjs from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions, SessionStrategy } from "next-auth";
 import connectToDb from "./connectDataBase";
-import User, { IUser } from "@/app/models/userModel";
+import User from "@/app/models/userModel";
 
 const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -39,13 +39,8 @@ const authOptions: NextAuthOptions = {
 
         try {
           await connectToDb();
+
           const user = await User.findOne({ email });
-          // const user = {
-          //   id: "1",
-          //   username: "J Smith",
-          //   email: "jsmith@example.com",
-          //   password: "123456",
-          // };
 
           if (!user) {
             return null;

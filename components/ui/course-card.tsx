@@ -18,18 +18,16 @@ export default function CourseCard({
   imageUrl,
   chaptersLength,
 }: CourseCardProps) {
-  // console.log("Course card id: ", id);
-
   return (
     <Link href={`/courses/${id}`}>
-      <div className="group h-full overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
-        <div className="relative aspect-video w-full overflow-hidden rounded-md">
+      <div className="group overflow-hidden rounded-lg border p-3 transition hover:shadow-sm">
+        <div className="relative h-full aspect-video w-full overflow-hidden rounded-md">
           <Image
-            className="w-full"
+            className="w-full h-full"
             src={imageUrl}
             width={200}
             height={100}
-            alt="Alt text"
+            alt={title}
           />
         </div>
 

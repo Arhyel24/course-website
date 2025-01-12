@@ -34,6 +34,8 @@ const LoginForm = () => {
         password: password,
         redirect: false,
       });
+
+      console.log(res);
       if (res?.error) {
         setLoading(false);
         setError("Invalid email or password");
@@ -101,7 +103,7 @@ const LoginForm = () => {
           text-center me-2 
           dark:bg-blue-600 dark:hover:bg-blue-700 
           dark:focus:ring-blue-800 
-          flex items-center text-center justify-center"
+          flex items-center justify-center"
           >
             {loading ? (
               <div className="flex gap-2 justify-center items-center">

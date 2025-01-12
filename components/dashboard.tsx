@@ -3,28 +3,16 @@ import { InfoCard } from "./ui/info-card";
 import CoursesList from "./ui/course-list";
 import { ICourse } from "@/app/models/Course";
 
+import { getCourses } from "@/actions/get-courses";
 export default async function Dashboard() {
   let coursesInProgress: ICourse[] = [];
   const completedCourses: ICourse[] = [];
 
   try {
-    // Construct the API URL
-    const apiUrl = `${process.env.NEXTAUTH_URL}/api/getcourses`;
-
-    // Fetch courses from the API
-    const courses = await fetch(apiUrl, { method: "GET" });
-
-    
-
-    // Parse the response JSON
-    const tsx = await courses.json();
-
-    // console.log(tsx);
-
-    coursesInProgress = tsx.courses || [];
+    const courses = await getCourses();
+    coursesInProgress = courses;
   } catch (error) {
     console.error("Error fetching courses:", error);
-    coursesInProgress = [];
   }
 
   return (
@@ -36,7 +24,6 @@ export default async function Dashboard() {
           numberOfItems={coursesInProgress.length}
           variant="default"
         />
-
         <InfoCard
           icon={CheckCircle}
           label="Completed"
@@ -48,3 +35,4 @@ export default async function Dashboard() {
     </div>
   );
 }
+

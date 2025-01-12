@@ -6,10 +6,11 @@ import { Button, Label, Modal, TextInput, FileInput } from "flowbite-react";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { isTeacher } from "@/lib/teacher";
-import toast from "react-hot-toast";
 
 export function NavBar() {
   const { data: session } = useSession();
+
+  console.log("session:", session!);
 
   const isAdmin = isTeacher(session?.user?.email);
 
@@ -20,15 +21,8 @@ export function NavBar() {
       className="bg-white dark:bg-gray-800 fixed w-full z-30"
     >
       <Navbar.Brand href="/">
-        <Image
-          width={30}
-          height={30}
-          src="https://i.ibb.co/pnNBqgp/IMG-20241209-131541.jpg"
-          className="mr-3 h-6 sm:h-9 rounded-full"
-          alt="miam affiliate"
-        />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          MIAM Course
+          Massive Income Course
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2 gap-2">

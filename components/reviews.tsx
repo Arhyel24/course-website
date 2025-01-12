@@ -14,7 +14,7 @@ const Reviews: React.FC = () => {
     {
       name: "Chidi Okoro",
       comment:
-        "MIAM has transformed my online business. I've increased my affiliate income by 50% in just a few months!",
+        "Massive Income Course has transformed my online business. I've increased my affiliate income by 50% in just a few months!",
       avatar: "https://randomuser.me/api/portraits/men/10.jpg",
     },
     {
@@ -26,13 +26,13 @@ const Reviews: React.FC = () => {
     {
       name: "Emeka Nwafor",
       comment:
-        "I was skeptical at first, but MIAM exceeded my expectations. The support and community are incredible.",
+        "I was skeptical at first, but Massive Income Course exceeded my expectations. The support and community are incredible.",
       avatar: "https://randomuser.me/api/portraits/men/12.jpg",
     },
     {
       name: "Fatima Abubakar",
       comment:
-        "I've tried other courses, but MIAM is the only one that has helped me achieve real results. I'm so grateful for this opportunity.",
+        "I've tried other courses, but Massive Income Course is the only one that has helped me achieve real results. I'm so grateful for this opportunity.",
       avatar: "https://randomuser.me/api/portraits/women/13.jpg",
     },
   ];

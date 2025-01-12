@@ -21,7 +21,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MASSIVE INCOME IN AFFILIATE MARKETING",
+  title: "MIC",
   description:
     "Welcome to Coach Adams Affiliate Marketing COURSE! 🚀 Are you ready to unlock your potential and transform your online income dreams into reality? Master affiliate marketing with ease and take control of your financial future.",
 };
@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Adsense pId="4728250862053645" />
         <ThemeModeScript />
       </head>
       <Flowbite theme={{ theme: flowbiteTheme }}>
