@@ -4,8 +4,10 @@ const nextConfig = {
   /* config options here */
   // experimental: {
   //   serverComponentsExternalPackages: ["mongoose"],
-  // },
+  // }
+
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -45,6 +47,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "randomuser.me",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
         port: "",
       },
     ],

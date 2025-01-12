@@ -14,8 +14,12 @@ export default async function Dashboard() {
     // Fetch courses from the API
     const courses = await fetch(apiUrl, { method: "GET" });
 
+    
+
     // Parse the response JSON
     const tsx = await courses.json();
+
+    // console.log(tsx);
 
     coursesInProgress = tsx.courses || [];
   } catch (error) {
