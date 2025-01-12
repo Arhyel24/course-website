@@ -1,5 +1,6 @@
 "use client";
 
+import { formatDate } from "@/actions/format-date";
 import { IUser } from "@/app/models/userModel";
 import { Table, Button, Modal } from "flowbite-react";
 import { useRouter } from "next/navigation";
@@ -61,7 +62,7 @@ export function UsersTable({ users }) {
                   {user.username}
                 </Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
-                <Table.Cell>21-01-2024</Table.Cell>
+                <Table.Cell>{formatDate(user.createdAt)}</Table.Cell>
                 <Table.Cell>
                   <Button
                     className="font-medium text-white hover:underline"

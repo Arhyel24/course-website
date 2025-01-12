@@ -1,5 +1,6 @@
 "use client";
 
+import { formatDate } from "@/actions/format-date";
 import { Card, Button, Modal } from "flowbite-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -56,6 +57,10 @@ export function UserCard({ user }) {
         <span className="text-sm text-gray-500 dark:text-gray-400">
           {user.email}
         </span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          {formatDate(user.createdAt)}
+        </span>
+
         <div className="mt-4 flex space-x-3 lg:mt-6">
           <Button
             size="xs"
