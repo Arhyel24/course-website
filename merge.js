@@ -51,41 +51,41 @@
 
 // exportDatabaseToJson(mongoUri, outputDir).catch(console.error);
 
-const mongoose = require("mongoose");
-const fs = require("fs");
+// const mongoose = require("mongoose");
+// const fs = require("fs");
 
-const chapterSchema = new mongoose.Schema(
-  {
-    title: { type: String, required: true },
-    description: { type: String, default: null },
-    videoUrl: { type: String, default: null },
-    courseId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
-      required: true,
-    },
-    order: { type: Number, required: true },
-  },
-  {
-    timestamps: true, // This will automatically add createdAt and updatedAt
-  }
-);
+// const chapterSchema = new mongoose.Schema(
+//   {
+//     title: { type: String, required: true },
+//     description: { type: String, default: null },
+//     videoUrl: { type: String, default: null },
+//     courseId: {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: "Course",
+//       required: true,
+//     },
+//     order: { type: Number, required: true },
+//   },
+//   {
+//     timestamps: true, // This will automatically add createdAt and updatedAt
+//   }
+// );
 
-const Chapter = mongoose.model("Chapter", chapterSchema);
+// const Chapter = mongoose.model("Chapter", chapterSchema);
 
-const courseSchema = new mongoose.Schema(
-  {
-    title: { type: String, default: null },
-    description: { type: String, default: null },
-    imageUrl: { type: String, default: null },
-    chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
-  },
-  {
-    timestamps: true, // This will automatically add createdAt and updatedAt
-  }
-);
+// const courseSchema = new mongoose.Schema(
+//   {
+//     title: { type: String, default: null },
+//     description: { type: String, default: null },
+//     imageUrl: { type: String, default: null },
+//     chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
+//   },
+//   {
+//     timestamps: true, // This will automatically add createdAt and updatedAt
+//   }
+// );
 
-const Course = mongoose.model("Course", courseSchema);
+// const Course = mongoose.model("Course", courseSchema);
 
 // async function addCoursesFromJson(jsonFilePath) {
 //   try {
@@ -112,7 +112,7 @@ const Course = mongoose.model("Course", courseSchema);
 //   }
 // }
 
-// // Example usage
+// Example usage
 // const jsonFilePath = "./database-backup/courses.json";
 // addCoursesFromJson(jsonFilePath).catch(console.error);
 
@@ -168,72 +168,77 @@ const Course = mongoose.model("Course", courseSchema);
 //   .catch(console.error);
 
 // const chapters = [
-//   "6784029f4309211c15fe9f9e",
-//   "6784029f4309211c15fe9f9f",
-//   "6784029f4309211c15fe9fa0",
-//   "6784029f4309211c15fe9fa1",
-//   "6784029f4309211c15fe9fa2",
-//   "6784029f4309211c15fe9fa3",
-//   "6784029f4309211c15fe9fa4",
-//   "6784029f4309211c15fe9fa5",
-//   "6784029f4309211c15fe9fa6",
-//   "6784029f4309211c15fe9fa7",
-//   "6784029f4309211c15fe9fa8",
-//   "6784029f4309211c15fe9fa9",
-//   "6784029f4309211c15fe9faa",
-//   "6784029f4309211c15fe9fab",
-//   "6784029f4309211c15fe9fac",
-//   "6784029f4309211c15fe9fad",
-//   "6784029f4309211c15fe9fae",
-//   "6784029f4309211c15fe9faf",
-//   "6784029f4309211c15fe9fb0",
-//   "6784029f4309211c15fe9fb1",
-//   "6784029f4309211c15fe9fb2",
-//   "6784029f4309211c15fe9fb3",
-//   "6784029f4309211c15fe9fb4",
-//   "6784029f4309211c15fe9fb5",
-//   "6784029f4309211c15fe9fb6",
-//   "6784029f4309211c15fe9fb7",
-//   "6784029f4309211c15fe9fb8",
-//   "6784029f4309211c15fe9fb9",
-//   "6784029f4309211c15fe9fba",
-//   "6784029f4309211c15fe9fbb",
-//   "6784029f4309211c15fe9fbc",
-//   "6784029f4309211c15fe9fbd",
-//   "6784029f4309211c15fe9fbe",
-//   "6784029f4309211c15fe9fbf",
-//   "6784029f4309211c15fe9fc0",
-//   "6784029f4309211c15fe9fc1",
-//   "6784029f4309211c15fe9fc2",
-//   "6784029f4309211c15fe9fc3",
-//   "6784029f4309211c15fe9fc4",
-//   "6784029f4309211c15fe9fc5",
-//   "6784029f4309211c15fe9fc6",
-//   "6784029f4309211c15fe9fc7",
-//   "6784029f4309211c15fe9fc8",
-//   "6784029f4309211c15fe9fc9",
-//   "6784029f4309211c15fe9fca",
-//   "6784029f4309211c15fe9fcb",
-//   "6784029f4309211c15fe9fcc",
-//   "6784029f4309211c15fe9fcd",
-//   "6784029f4309211c15fe9fce",
-//   "6784029f4309211c15fe9fcf",
-//   "6784029f4309211c15fe9fd0",
-//   "6784029f4309211c15fe9fd1",
-//   "6784029f4309211c15fe9fd2",
-//   "6784029f4309211c15fe9fd3",
-//   "6784029f4309211c15fe9fd4",
-//   "6784029f4309211c15fe9fd5",
-//   "6784029f4309211c15fe9fd6",
-//   "6784029f4309211c15fe9fd7",
-//   "6784029f4309211c15fe9fd8",
+//   "67b4f454d1dd76772231d360",
+//   "67b4f454d1dd76772231d361",
+//   "67b4f454d1dd76772231d362",
+//   "67b4f454d1dd76772231d363",
+//   "67b4f454d1dd76772231d364",
+//   "67b4f454d1dd76772231d365",
+//   "67b4f454d1dd76772231d366",
+//   "67b4f454d1dd76772231d367",
+//   "67b4f454d1dd76772231d368",
+//   "67b4f454d1dd76772231d369",
+//   "67b4f454d1dd76772231d36a",
+//   "67b4f454d1dd76772231d36b",
+//   "67b4f454d1dd76772231d36c",
+//   "67b4f454d1dd76772231d36d",
+//   "67b4f454d1dd76772231d36e",
+//   "67b4f454d1dd76772231d36f",
+//   "67b4f454d1dd76772231d370",
+//   "67b4f454d1dd76772231d371",
+//   "67b4f454d1dd76772231d372",
+//   "67b4f454d1dd76772231d373",
+//   "67b4f454d1dd76772231d374",
+//   "67b4f454d1dd76772231d375",
+//   "67b4f454d1dd76772231d376",
+//   "67b4f454d1dd76772231d377",
+//   "67b4f454d1dd76772231d378",
+//   "67b4f454d1dd76772231d379",
+//   "67b4f454d1dd76772231d37a",
+//   "67b4f454d1dd76772231d37b",
+//   "67b4f454d1dd76772231d37c",
+//   "67b4f454d1dd76772231d37d",
+//   "67b4f454d1dd76772231d37e",
+//   "67b4f454d1dd76772231d37f",
+//   "67b4f454d1dd76772231d380",
+//   "67b4f454d1dd76772231d381",
+//   "67b4f454d1dd76772231d382",
+//   "67b4f454d1dd76772231d383",
+//   "67b4f454d1dd76772231d384",
+//   "67b4f454d1dd76772231d385",
+//   "67b4f454d1dd76772231d386",
+//   "67b4f454d1dd76772231d387",
+//   "67b4f454d1dd76772231d388",
+//   "67b4f454d1dd76772231d389",
+//   "67b4f454d1dd76772231d38a",
+//   "67b4f454d1dd76772231d38b",
+//   "67b4f454d1dd76772231d38c",
+//   "67b4f454d1dd76772231d38d",
+//   "67b4f454d1dd76772231d38e",
+//   "67b4f454d1dd76772231d38f",
+//   "67b4f454d1dd76772231d390",
+//   "67b4f454d1dd76772231d391",
+//   "67b4f454d1dd76772231d392",
+//   "67b4f454d1dd76772231d393",
+//   "67b4f454d1dd76772231d394",
+//   "67b4f454d1dd76772231d395",
+//   "67b4f454d1dd76772231d396",
+//   "67b4f454d1dd76772231d397",
+//   "67b4f454d1dd76772231d398",
+//   "67b4f454d1dd76772231d399",
+//   "67b4f454d1dd76772231d39a",
+//   "67b4f454d1dd76772231d39b",
+//   "67b4f454d1dd76772231d39c",
+//   "67b4f454d1dd76772231d39d",
+//   "67b4f454d1dd76772231d39e",
+//   "67b4f454d1dd76772231d39f",
 // ];
 
 // console.log(chapters.length);
 
-// const firstPart = chapters.slice(0, 37); // First 38 items
-// const secondPart = chapters.slice(37, 52); // Next 15 items (from index 38 to 52)
-// const thirdPart = chapters.slice(52, 60); // Next 7 items (from index 53 to 59)
+// const firstPart = chapters.slice(0, 42); // First 38 items
+// const secondPart = chapters.slice(42, 57); // Next 15 items (from index 38 to 52)
+// const thirdPart = chapters.slice(57, 65); // Next 7 items (from index 53 to 59)
 
 // console.log(firstPart.length, secondPart.length, thirdPart.length);
 
@@ -241,7 +246,8 @@ const Course = mongoose.model("Course", courseSchema);
 //   try {
 //     // Connect to MongoDB
 //     await mongoose.connect(
-//       "mongodb+srv://arhyelphilip024:Ferry@myworks.yl0en.mongodb.net/courseDb?retryWrites=true&w=majority&appName=myworks");
+//       "mongodb+srv://arhyelphilip024:Ferry@myworks.yl0en.mongodb.net/courseDb?retryWrites=true&w=majority&appName=myworks"
+//     );
 
 //     console.log("Connected to the database.");
 
@@ -272,9 +278,9 @@ const Course = mongoose.model("Course", courseSchema);
 // }
 
 // // Example usage
-// const courseId = "6783d268a7c323d892cca3e2"; // Replace with actual course ID
+// const courseId = "67b4f36c076c894c1adaf8aa"; // Replace with actual course ID
 
-// updateCourseChapters(courseId, thirdPart)
+// updateCourseChapters(courseId, firstPart)
 //   .then((updatedCourse) => {
 //     console.log("Updated Course:", updatedCourse);
 //   })
