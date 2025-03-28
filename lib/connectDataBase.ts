@@ -20,7 +20,7 @@ const connectToDb = async (retries = 5) => {
     console.error("Database connection error:", error);
 
     if (retries > 0) {
-      console.log(`Retrying connection... (${5 - retries + 1})`);
+      // console.log(`Retrying connection... (${5 - retries + 1})`);
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait before retrying
       return connectToDb(retries - 1); // Retry connection
     } else {

@@ -21,13 +21,13 @@ export default async function getChapter({
 
     const course = await Course.findById(courseId).populate("chapters");
     if (!course) {
-      console.log("Course not found");
+      // console.log("Course not found");
       return { chapter: null, course: null, nextChapterId: null };
     }
 
     const chapter = await Chapter.findById(chapterId) as IChapter | null;
     if (!chapter) {
-      console.log("Chapter not found");
+      // console.log("Chapter not found");
       return { chapter: null, course, nextChapterId: null };
     }
 
@@ -36,7 +36,7 @@ export default async function getChapter({
       order: chapter.order + 1,
     }) as IChapter | null;
 
-    console.log("Next Chapter:", nextChapter);
+    // console.log("Next Chapter:", nextChapter);
 
     return {
       chapter,
