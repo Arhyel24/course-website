@@ -56,7 +56,7 @@ export default async function ChapterDetailsPage({
                     with like-minded learners.
                   </p>
                   <a
-                    href="https://chat.whatsapp.com/IEJfxfGCQa6ATH72sJr65T"
+                    href="https://chat.whatsapp.com/GtTnMNigNg0IoQB7gk7Cya"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 text-sm font-medium text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 transition-all"
