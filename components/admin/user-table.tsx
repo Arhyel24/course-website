@@ -2,7 +2,7 @@
 
 import { formatDate } from "@/actions/format-date";
 import { IUser } from "@/app/models/userModel";
-import { Table, Button, Modal } from "flowbite-react";
+import { Table, Button, Modal, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -11,6 +11,9 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 export function UsersTable({ users }) {
   const [openModal, setOpenModal] = useState(false);
   const [deleteUser, setDeleteUser] = useState<IUser | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
 
   const router = useRouter();
 
@@ -18,7 +21,7 @@ export function UsersTable({ users }) {
     if (!deleteUser) return;
 
     try {
-      const response = await fetch("/api/deleteUser ", {
+      const response = await fetch("/api/deleteUser", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +30,7 @@ export function UsersTable({ users }) {
       });
 
       if (!response.ok) {
-        console.error("Failed to delete user");
+        throw new Error("Failed to delete user");
       }
 
       const data = await response.json();
@@ -40,8 +43,35 @@ export function UsersTable({ users }) {
     }
   };
 
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset pagination when searching
+  };
+
+  // Filter users based on search query
+  const filteredUsers = users.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const paginatedUsers = filteredUsers.slice(startIndex, startIndex + usersPerPage);
+
   return (
-    <div className="overflow-x-auto pt-8">
+    <>
+    <div className="overflow-x-auto pt-4">
+      <TextInput
+        type="text"
+        placeholder="Search by name or email..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+        className="mb-4 w-full"
+      />
+      
       <Table hoverable>
         <Table.Head>
           <Table.HeadCell>User name</Table.HeadCell>
@@ -52,8 +82,8 @@ export function UsersTable({ users }) {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {users.length > 0 ? (
-            users.map((user) => (
+          {paginatedUsers.length > 0 ? (
+            paginatedUsers.map((user) => (
               <Table.Row
                 key={user.username}
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -63,7 +93,7 @@ export function UsersTable({ users }) {
                 </Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
                 <Table.Cell>{formatDate(user.createdAt)}</Table.Cell>
-                <Table.Cell>
+                <Table.Cell className="flex justify-end">
                   <Button
                     className="font-medium text-white hover:underline"
                     color="failure"
@@ -79,12 +109,15 @@ export function UsersTable({ users }) {
             ))
           ) : (
             <Table.Row className="bg-white dark:border-gray-700 text-center w-full dark:bg-gray-800">
-              <Table.Cell>No users enrolled yet!</Table.Cell>
+              <Table.Cell colSpan={4}>No users found!</Table.Cell>
             </Table.Row>
           )}
         </Table.Body>
       </Table>
 
+      
+
+      {/* Delete Confirmation Modal */}
       <Modal
         show={openModal}
         size="md"
@@ -109,6 +142,18 @@ export function UsersTable({ users }) {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+      </div>
+      
+      {/* Pagination Controls */}
+      <div className="flex justify-between items-center mt-4 px-4">
+        <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+          Previous
+        </Button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+          Next
+        </Button>
+      </div>
+      </>
   );
 }

@@ -27,7 +27,9 @@ export async function POST(req: NextRequest) {
     <html>
   <body style="font-family: Arial, sans-serif; background-color: #f7fafc;">
     <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 5px solid #8B0000;">
-      <h2 style="color: #8B0000; text-align: center; font-size: 22px; font-weight: bold;">Welcome to the MIC Affiliate Marketing Program!</h2>
+    <div style="background-color: #8B0000; color: white; text-align: center; padding: 2rem;">
+            <h1 style="font-size: 1.75rem; font-weight: bold; margin: 0;">Welcome to "Massive Income Affiliate Marketing Course!</h1>
+        </div>
       <p style="font-size: 16px; color: #333;">Hi ${email},</p>
       <p style="font-size: 16px; color: #555;">
         Congratulations on joining the <strong>MIC Affiliate Marketing Program</strong>! You’re about to embark on an exciting journey towards financial freedom through affiliate marketing.

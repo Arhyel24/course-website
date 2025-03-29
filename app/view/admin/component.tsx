@@ -2,7 +2,6 @@
 
 import { Card, Button, Label, Modal, TextInput, Spinner } from "flowbite-react";
 import { UserCard } from "@/components/admin/user-card";
-import { NavBar } from "@/components/navbar";
 import { UsersTable } from "@/components/admin/user-table";
 import { Suspense, useEffect, useState, useCallback } from "react";
 import { MyFooter } from "@/components/footer";
@@ -128,34 +127,14 @@ export default function AdminComponent() {
     <>
       <Suspense>
         <div className="px-8 py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
-          <div className="flex justify-between">
-            <div className="flex flex-wrap gap-2">
-              <Button
-                onClick={tableView}
-                color={tab === "table" ? "blue" : "light"}
-              >
-                Table view
-              </Button>
-              <Button
-                onClick={listView}
-                color={tab === "card" ? "blue" : "light"}
-              >
-                Card View
-              </Button>
-            </div>
+          <div className="flex justify-end">
             <Button onClick={() => setEnrolUser(true)} color="success">
               + Add user
             </Button>
           </div>
           <div className="p-4">Registered users: {users.length}</div>
-          {tab === "table" ? (
+          {users.length > 0 ? (
             <UsersTable users={users} />
-          ) : users.length > 0 ? (
-            <div className="flex flex-wrap gap-6 pt-6 pb-6">
-              {users.map((user, i) => (
-                <UserCard key={i} user={user} />
-              ))}
-            </div>
           ) : (
             <Card className="w-full mt-2 bg-white dark:bg-gray-800">
               <div className="flex justify-center items-center p-4 text-gray-900 dark:text-gray-200">
