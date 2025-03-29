@@ -15,44 +15,38 @@ const LoginForm = () => {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(""); // Clear previous errors
+
     try {
       if (!email || !password) {
-        setError("Please fill all the fields");
-        setLoading(false);
-        return;
+        throw new Error("Please fill all the fields");
       }
 
-      const emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+      const emailRegex = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(email)) {
-        setError("Invalid email address");
-        setLoading(false);
-        return;
+        throw new Error("Invalid email address");
       }
 
       const res = await signIn("credentials", {
-        email: email,
-        password: password,
+        email,
+        password,
         redirect: false,
       });
 
-      if (res?.error) {
-        setLoading(false);
-        setError("Invalid email or password");
-      } else {
-        setError("");
-        router.replace("/");
-        // router.push("/userprofile");
-      }
-    } catch (error) {
-      setError("An unexpected error occurred");
 
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setError("");
-      }, 5000);
-      console.error(error);
+      if (!res || res.error) {
+        throw new Error("Invalid email or password");
+      }
+
+      router.replace("/");
+    } catch (error) {
+      setError((error as Error).message || "An unexpected error occurred");
+      console.error("Login error:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
       <div className="absolute inset-0 bg-cover bg-center background-pattern opacity-10 dark:opacity-20"></div>
