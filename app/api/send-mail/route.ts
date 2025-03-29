@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       text: `Thanks for registering! Here are your temporary login details:\nEmail: ${email}\nPassword: 12345678\n\nLog in here: ${process.env.NEXTAUTH_URL}login\n\nPlease update your password after logging in.\n\nBest,\nCoach Adams`,
       html: `
     <html>
-  <body style="font-family: Arial, sans-serif; background-color: #f7fafc; padding: 20px;">
+  <body style="font-family: Arial, sans-serif; background-color: #f7fafc; padding: 5px;">
     <div style="max-width: 600px; margin: auto; background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 5px solid #8B0000;">
       <div style="background-color: #8B0000; color: white; text-align: center; padding: 2rem; border-radius: 8px 8px 0 0;">
         <h1 style="font-size: 1.75rem; font-weight: bold; margin: 0;">Welcome to Massive Income Affiliate Marketing Course!</h1>
