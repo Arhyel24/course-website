@@ -116,6 +116,38 @@ async function addCoursesFromJson(jsonFilePath) {
 // const jsonFilePath = "./database-backup/courses.json";
 // addCoursesFromJson(jsonFilePath).catch(console.error);
 
+const newChapters = [
+  {
+    "title": "Chapter 41: Intro to WhatsApp marketing 1",
+    "description": "Introduction to WhatsApp marketing - part 1.",
+    "videoUrl": "https://youtu.be/sJQCeIp284M?si=er6qqEiZxVBq4NQG",
+    "courseId": "67e7de73e355ca5404744e78",
+    "order": 41
+  },
+  {
+    "title": "Chapter 42: Intro to WhatsApp marketing 2",
+    "description": "Introduction to WhatsApp marketing - part 2.",
+    "videoUrl": "https://youtu.be/r9nXeZc7sF8?si=BW_LRvj-p_YSn1ky",
+    "courseId": "67e7de73e355ca5404744e78",
+    "order": 42
+  },
+  {
+    "title": "Chapter 43: Yanda ake WhatsApp marketing 1",
+    "description": "Yadda ake amfani da WhatsApp wajen marketing - 1.",
+    "videoUrl": "https://youtu.be/WZKwDGjaOao?si=hdMXkbdOGffCQHs2",
+    "courseId": "67e7de73e355ca5404744e78",
+    "order": 43
+  },
+  {
+    "title": "Chapter 44: Yanda ake WhatsApp marketing 2",
+    "description": "Yadda ake amfani da WhatsApp wajen marketing - 2.",
+    "videoUrl": "https://youtu.be/_oDGThXV_CA?si=sOssxeY5Eu2XVHmy",
+    "courseId": "67e7de73e355ca5404744e78",
+    "order": 44
+  }
+]
+
+
 async function addChaptersAndReturnIds(chapterJsonPath, outputJsonPath) {
   try {
     // Connect to MongoDB
@@ -129,7 +161,7 @@ async function addChaptersAndReturnIds(chapterJsonPath, outputJsonPath) {
     const chapterData = JSON.parse(fs.readFileSync(chapterJsonPath, "utf-8"));
 
     // Insert chapters into the database
-    const insertedChapters = await Chapter.insertMany(chapterData);
+    const insertedChapters = await Chapter.insertMany(newChapters);
 
     // Extract only the _id field and convert it to 'id'
     const chapterIds = insertedChapters.map((chapter) =>
@@ -137,11 +169,11 @@ async function addChaptersAndReturnIds(chapterJsonPath, outputJsonPath) {
     );
 
     // Optionally, save the IDs to a new JSON file
-    fs.writeFileSync(
-      outputJsonPath,
-      JSON.stringify(chapterIds, null, 2),
-      "utf-8"
-    );
+    // fs.writeFileSync(
+    //   outputJsonPath,
+    //   JSON.stringify(chapterIds, null, 2),
+    //   "utf-8"
+    // );
 
     console.log(
       `Inserted ${insertedChapters.length} chapters and saved their IDs to ${outputJsonPath}.`
@@ -168,78 +200,88 @@ async function addChaptersAndReturnIds(chapterJsonPath, outputJsonPath) {
 //   .catch(console.error);
 
 const chapters = [
-  '67e7def88928c0a073240a2e',
-  '67e7def88928c0a073240a2f',
-  '67e7def88928c0a073240a30',
-  '67e7def88928c0a073240a31',
-  '67e7def88928c0a073240a32',
-  '67e7def88928c0a073240a33',
-  '67e7def88928c0a073240a34',
-  '67e7def88928c0a073240a35',
-  '67e7def88928c0a073240a36',
-  '67e7def88928c0a073240a37',
-  '67e7def88928c0a073240a38',
-  '67e7def88928c0a073240a39',
-  '67e7def88928c0a073240a3a',
-  '67e7def88928c0a073240a3b',
-  '67e7def88928c0a073240a3c',
-  '67e7def88928c0a073240a3d',
-  '67e7def88928c0a073240a3e',
-  '67e7def88928c0a073240a3f',
-  '67e7def88928c0a073240a40',
-  '67e7def88928c0a073240a41',
-  '67e7def88928c0a073240a42',
-  '67e7def88928c0a073240a43',
-  '67e7def88928c0a073240a44',
-  '67e7def88928c0a073240a45',
-  '67e7def88928c0a073240a46',
-  '67e7def88928c0a073240a47',
-  '67e7def88928c0a073240a48',
-  '67e7def88928c0a073240a49',
-  '67e7def88928c0a073240a4a',
-  '67e7def88928c0a073240a4b',
-  '67e7def88928c0a073240a4c',
-  '67e7def88928c0a073240a4d',
-  '67e7def88928c0a073240a4e',
-  '67e7def88928c0a073240a4f',
-  '67e7def88928c0a073240a50',
-  '67e7def88928c0a073240a51',
-  '67e7def88928c0a073240a52',
-  '67e7def88928c0a073240a53',
-  '67e7def88928c0a073240a54',
-  '67e7def88928c0a073240a55',
-  '67e7def88928c0a073240a56',
-  '67e7def88928c0a073240a57',
-  '67e7def88928c0a073240a58',
-  '67e7def88928c0a073240a59',
-  '67e7def88928c0a073240a5a',
-  '67e7def88928c0a073240a5b',
-  '67e7def88928c0a073240a5c',
-  '67e7def88928c0a073240a5d',
-  '67e7def88928c0a073240a5e',
-  '67e7def88928c0a073240a5f',
-  '67e7def88928c0a073240a60',
-  '67e7def88928c0a073240a61',
-  '67e7def88928c0a073240a62',
-  '67e7def88928c0a073240a63',
-  '67e7def88928c0a073240a64',
-  '67e7def88928c0a073240a65',
-  '67e7def88928c0a073240a66',
-  '67e7def88928c0a073240a67',
-  '67e7def88928c0a073240a68',
-  '67e7def88928c0a073240a69',
-  '67e7def88928c0a073240a6a',
-  '67e7def88928c0a073240a6b',
-  '67e7def88928c0a073240a6c',
-  '67e7def88928c0a073240a6d',
-  '67e7def88928c0a073240a6e'
+  "67f6be92739b6649213b0dbd",
+  "67f6be92739b6649213b0dbe",
+  "67f6be92739b6649213b0dbf",
+  "67f6be92739b6649213b0dc0",
+  "67f6be92739b6649213b0dc1",
+  "67f6be92739b6649213b0dc2",
+  "67f6be92739b6649213b0dc3",
+  "67f6be92739b6649213b0dc4",
+  "67f6be92739b6649213b0dc5",
+  "67f6be92739b6649213b0dc6",
+  "67f6be92739b6649213b0dc7",
+  "67f6be92739b6649213b0dc8",
+  "67f6be92739b6649213b0dc9",
+  "67f6be92739b6649213b0dca",
+  "67f6be92739b6649213b0dcb",
+  "67f6be92739b6649213b0dcc",
+  "67f6be92739b6649213b0dcd",
+  "67f6be92739b6649213b0dce",
+  "67f6be92739b6649213b0dcf",
+  "67f6be92739b6649213b0dd0",
+  "67f6be92739b6649213b0dd1",
+  "67f6be92739b6649213b0dd2",
+  "67f6be92739b6649213b0dd3",
+  "67f6be92739b6649213b0dd4",
+  "67f6be92739b6649213b0dd5",
+  "67f6be92739b6649213b0dd6",
+  "67f6be92739b6649213b0dd7",
+  "67f6be92739b6649213b0dd8",
+  "67f6be92739b6649213b0dd9",
+  "67f6be92739b6649213b0dda",
+  "67f6be92739b6649213b0ddb",
+  "67f6be92739b6649213b0ddc",
+  "67f6be92739b6649213b0ddd",
+  "67f6be92739b6649213b0dde",
+  "67f6be92739b6649213b0ddf",
+  "67f6be92739b6649213b0de0",
+  "67f6be92739b6649213b0de1",
+  "67f6be92739b6649213b0de2",
+  "67f6be92739b6649213b0de3",
+  "67f6be92739b6649213b0de4",
+  "684f77ae7278663e6f1fb453",
+  "684f77ae7278663e6f1fb454",
+  "684f77ae7278663e6f1fb455",
+  "684f77ae7278663e6f1fb456",
+  ///////////
+  "67f6be92739b6649213b0de5",
+  "67f6be92739b6649213b0de6",
+  "67f6be92739b6649213b0de7",
+  "67f6be92739b6649213b0de8",
+  "67f6be92739b6649213b0de9",
+  "67f6be92739b6649213b0dea",
+  "67f6be92739b6649213b0deb",
+  "67f6be92739b6649213b0dec",
+  "67f6be92739b6649213b0ded",
+  "67f6be92739b6649213b0dee",
+  "67f6be92739b6649213b0def",
+  "67f6be92739b6649213b0df0",
+  "67f6be92739b6649213b0df1",
+  "67f6be92739b6649213b0df2",
+  "67f6be92739b6649213b0df3",
+  "67f6be92739b6649213b0df4",
+  "67f6be92739b6649213b0df5",
+  "67f6be92739b6649213b0df6",
+  "67f6be92739b6649213b0df7",
+  "67f6be92739b6649213b0df8",
+  "67f6be92739b6649213b0df9",
+  "67f6be92739b6649213b0dfa",
 ];
+
+const chapersToUpdate = [
+  '684f77ae7278663e6f1fb453',
+  '684f77ae7278663e6f1fb454',
+  '684f77ae7278663e6f1fb455',
+  '684f77ae7278663e6f1fb456',
+]
 
 console.log(chapters.length);
 
-const firstPart = chapters.slice(0, 43); // First 38 items
-const secondPart = chapters.slice(43, 58);
-const thirdPart = chapters.slice(58, 67); // Last 8 items (from index 53 to 60)
+const firstPart = chapters.slice(0, 44);
+const secondPart = chapters.slice(40, 55);
+const thirdPart = chapters.slice(55, 62);
+console.log(chapters[44])
 
 console.log(firstPart.length, secondPart.length, thirdPart.length);
 console.log(firstPart.length + secondPart.length + thirdPart.length);
@@ -281,10 +323,10 @@ async function updateCourseChapters(courseId, chapterIds) {
 }
 
 // // Example usage
-// const courseId = "67e7de73e355ca5404744e78"; // Replace with your actual course ID
+const courseId = "67e7de73e355ca5404744e78"; // Replace with your actual course ID
 
-// updateCourseChapters(courseId, firstPart)
-//   .then((updatedCourse) => {
-//     console.log("Updated Course:", updatedCourse);
-//   })
-//   .catch(console.error);
+updateCourseChapters(courseId, firstPart)
+  .then((updatedCourse) => {
+    console.log("Updated Course:", updatedCourse);
+  })
+  .catch(console.error);

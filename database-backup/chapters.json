@@ -84,221 +84,200 @@
     "order": 12
   },
   {
-    "title": "Chapter 12: Intro to Broadcast",
-    "description": "Introduction to broadcast messaging in WhatsApp.",
-    "videoUrl": "https://youtu.be/QCkHX5LlqeQ",
+    "title": "Chapter 12: WhatsApp Auto Responder 1",
+    "description": "Introduction to WhatsApp auto-responder setup.",
+    "videoUrl": "https://youtu.be/fgHDZs3pzac",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 13
   },
   {
-    "title": "Chapter 13: WhatsApp Broadcast 1",
-    "description": "First module on WhatsApp broadcast features.",
-    "videoUrl": "https://youtube.com/shorts/SMsRJovPbaQ",
+    "title": "Chapter 13: WhatsApp Auto Responder 2",
+    "description": "Second guide on setting up auto-responders.",
+    "videoUrl": "https://youtube.com/shorts/6xi0zA3XSd8",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 14
   },
   {
-    "title": "Chapter 14: WhatsApp Broadcast 2",
-    "description": "Second module on advanced broadcast techniques.",
-    "videoUrl": "https://youtu.be/qMqgdAPFoEg",
+    "title": "Chapter 14: Yanda Ake Bude Selar Account",
+    "description": "Guide to opening a Selar account.",
+    "videoUrl": "https://youtu.be/LJOK6UZpM3c",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 15
   },
   {
-    "title": "Chapter 15: WhatsApp Auto Responder 1",
-    "description": "Introduction to WhatsApp auto-responder setup.",
-    "videoUrl": "https://youtu.be/fgHDZs3pzac",
+    "title": "Chapter 15: Yanda Ake Reseting Na Selar",
+    "description": "Steps to reset a Selar account.",
+    "videoUrl": "https://youtu.be/X2-yz0sL2Yk",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 16
   },
   {
-    "title": "Chapter 16: WhatsApp Auto Responder 2",
-    "description": "Second guide on setting up auto-responders.",
-    "videoUrl": "https://youtube.com/shorts/6xi0zA3XSd8",
+    "title": "Chapter 16: Yanda Ake Promoting Na Course Naka",
+    "description": "Guide to promoting your course effectively.",
+    "videoUrl": "https://youtu.be/km5u41aDhh4",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 17
   },
   {
-    "title": "Chapter 17: Yanda Ake Bude Selar Account",
-    "description": "Guide to opening a Selar account.",
-    "videoUrl": "https://youtu.be/LJOK6UZpM3c",
+    "title": "Chapter 17: Yanda Ake Bude Sells Rocket",
+    "description": "Steps to open and use Sells Rocket.",
+    "videoUrl": "https://youtu.be/PRntGN87yFY",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 18
   },
   {
-    "title": "Chapter 18: Yanda Ake Reseting Na Selar",
-    "description": "Steps to reset a Selar account.",
-    "videoUrl": "https://youtu.be/X2-yz0sL2Yk",
+    "title": "Chapter 18: INTRO TO PAYONAIRE",
+    "description": "Introduction to Payonaire.",
+    "videoUrl": "https://youtu.be/rwJ3y2aG1dg",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 19
   },
   {
-    "title": "Chapter 19: Yanda Ake Promoting Na Course Naka",
-    "description": "Guide to promoting your course effectively.",
-    "videoUrl": "https://youtu.be/km5u41aDhh4",
+    "title": "Chapter 19: Yanda ake register da PAYONAIRE",
+    "description": "Guide to creating a payonaire account.",
+    "videoUrl": "https://youtu.be/vaUjM0nlIeI",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 20
   },
   {
-    "title": "Chapter 20: Yanda Ake Bude Sells Rocket",
-    "description": "Steps to open and use Sells Rocket.",
-    "videoUrl": "https://youtu.be/PRntGN87yFY",
+    "title": "Chapter 20: Intro to Landing Page",
+    "description": "Introduction to creating landing pages.",
+    "videoUrl": "https://youtu.be/ZBcKp9kAwJU",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 21
   },
   {
-    "title": "Chapter 21: INTRO TO PAYONAIRE",
-    "description": "Introduction to Payonaire.",
-    "videoUrl": "https://youtu.be/rwJ3y2aG1dg",
+    "title": "Chapter 21: Bayani yanda ake yin Affiliate Marketing",
+    "description": "How to get started with affiliate marketing.",
+    "videoUrl": "https://youtu.be/m7Jbs3-1Bac",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 22
   },
   {
-    "title": "Chapter 22: Yanda ake register da PAYONAIRE",
-    "description": "Guide to creating a payonaire account.",
-    "videoUrl": "https://youtu.be/vaUjM0nlIeI",
+    "title": "Chapter 22: Yanda ake yin Affiliate marketing a payonaire marketplace",
+    "description": "Getting started with payonaire marketplace.",
+    "videoUrl": "https://youtu.be/4vIj2ZdgX84",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 23
   },
   {
-    "title": "Chapter 23: Intro to Landing Page",
-    "description": "Introduction to creating landing pages.",
-    "videoUrl": "https://youtu.be/ZBcKp9kAwJU",
+    "title": "Chapter 23: Yanda Ake Creating Account Na Landing Page",
+    "description": "Guide to creating a landing page account.",
+    "videoUrl": "https://youtu.be/eu-tZTuMXhw",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 24
   },
   {
-    "title": "Chapter 24: Bayani yanda ake yin Affiliate Marketing",
-    "description": "How to get started with affiliate marketing.",
-    "videoUrl": "https://youtu.be/m7Jbs3-1Bac",
+    "title": "Chapter 24: Landing Page Setup 1",
+    "description": "First steps in landing page setup.",
+    "videoUrl": "https://youtu.be/WaL1fXm4_AY",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 25
   },
   {
-    "title": "Chapter 25: Yanda ake yin Affiliate marketing a payonaire marketplace",
-    "description": "Getting started with payonaire marketplace.",
-    "videoUrl": "https://youtu.be/4vIj2ZdgX84",
+    "title": "Chapter 25: Landing Page Setup 2",
+    "description": "Second module on landing page setup.",
+    "videoUrl": "https://youtu.be/80L02tkr7Cc",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 26
   },
   {
-    "title": "Chapter 26: Yanda Ake Creating Account Na Landing Page",
-    "description": "Guide to creating a landing page account.",
-    "videoUrl": "https://youtu.be/eu-tZTuMXhw",
+    "title": "Chapter 26: Landing Page Setup 3",
+    "description": "Advanced landing page setup techniques.",
+    "videoUrl": "https://youtu.be/U23xz27mUQU",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 27
   },
   {
-    "title": "Chapter 27: Landing Page Setup 1",
-    "description": "First steps in landing page setup.",
-    "videoUrl": "https://youtu.be/WaL1fXm4_AY",
+    "title": "Chapter 27: Landing Page Setup 4",
+    "description": "Final guide to landing page setup.",
+    "videoUrl": "https://youtu.be/8BpjhPKXCFo",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 28
   },
   {
-    "title": "Chapter 28: Landing Page Setup 2",
-    "description": "Second module on landing page setup.",
-    "videoUrl": "https://youtu.be/80L02tkr7Cc",
+    "title": "Chapter 28: Intro to Facebook Ads",
+    "description": "Introduction to Facebook advertising.",
+    "videoUrl": "https://youtu.be/9a7Q8S2msGQ",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 29
   },
   {
-    "title": "Chapter 29: Landing Page Setup 3",
-    "description": "Advanced landing page setup techniques.",
-    "videoUrl": "https://youtu.be/U23xz27mUQU",
+    "title": "Chapter 29: Intro to Ads Creatives",
+    "description": "Guide to creating effective ad creatives.",
+    "videoUrl": "https://youtu.be/ElVMQv1PSL0",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 30
   },
   {
-    "title": "Chapter 30: Landing Page Setup 4",
-    "description": "Final guide to landing page setup.",
-    "videoUrl": "https://youtu.be/8BpjhPKXCFo",
+    "title": "Chapter 30: Facebook Ads Setup 1",
+    "description": "First steps to set up Facebook ads.",
+    "videoUrl": "https://youtu.be/vEhbkoiNuTU",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 31
   },
   {
-    "title": "Chapter 31: Intro to Facebook Ads",
-    "description": "Introduction to Facebook advertising.",
-    "videoUrl": "https://youtu.be/9a7Q8S2msGQ",
+    "title": "Chapter 31: Facebook Ads Setup 2",
+    "description": "Chapter 30: Second module on Facebook ads setup.",
+    "videoUrl": "https://youtu.be/2seGKt62bXM",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 32
   },
   {
-    "title": "Chapter 32: Intro to Ads Creatives",
-    "description": "Guide to creating effective ad creatives.",
-    "videoUrl": "https://youtu.be/ElVMQv1PSL0",
+    "title": "Chapter 32: Facebook Ads Setup 3",
+    "description": "Third module on advanced ad setup.",
+    "videoUrl": "https://youtu.be/wj7D0qU9GpQ",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 33
   },
   {
-    "title": "Chapter 33: Facebook Ads Setup 1",
-    "description": "First steps to set up Facebook ads.",
-    "videoUrl": "https://youtu.be/vEhbkoiNuTU",
+    "title": "Chapter 33: Facebook Ads Setup 4",
+    "description": "Detailed guide on ad configurations.",
+    "videoUrl": "https://youtu.be/CM6nNfqCHWQ",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 34
   },
   {
-    "title": "Chapter 34: Facebook Ads Setup 2",
-    "description": "Chapter 30: Second module on Facebook ads setup.",
-    "videoUrl": "https://youtu.be/2seGKt62bXM",
+    "title": "Chapter 34: Facebook Ads Setup 5",
+    "description": "Fifth guide on Facebook ad strategies.",
+    "videoUrl": "https://youtu.be/qrh4LYMpE6I",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 35
   },
   {
-    "title": "Chapter 35: Facebook Ads Setup 3",
-    "description": "Third module on advanced ad setup.",
-    "videoUrl": "https://youtu.be/wj7D0qU9GpQ",
+    "title": "Chapter 35: Facebook Ads Setup 6",
+    "description": "Advanced techniques for ad setup.",
+    "videoUrl": "https://youtu.be/hFbGeNNIvp4",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 36
   },
   {
-    "title": "Chapter 36: Facebook Ads Setup 4",
-    "description": "Detailed guide on ad configurations.",
-    "videoUrl": "https://youtu.be/CM6nNfqCHWQ",
+    "title": "Chapter 36: Facebook Ads Setup 7",
+    "description": "Second-to-last guide on ad setup.",
+    "videoUrl": "https://youtu.be/jHbEAuyw65c",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 37
   },
   {
-    "title": "Chapter 37: Facebook Ads Setup 5",
-    "description": "Fifth guide on Facebook ad strategies.",
-    "videoUrl": "https://youtu.be/qrh4LYMpE6I",
+    "title": "Chapter 37: Facebook Ads Last Setup 8",
+    "description": "Final module on Facebook ad setup.",
+    "videoUrl": "https://youtu.be/zRIvdwDEcU4",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 38
   },
   {
-    "title": "Chapter 38: Facebook Ads Setup 6",
-    "description": "Advanced techniques for ad setup.",
-    "videoUrl": "https://youtu.be/hFbGeNNIvp4",
+    "title": "Chapter 38: Yanda ake generating leads 1",
+    "description": "Affiliate marketing introduction.",
+    "videoUrl": "https://youtu.be/CkUOodCx0r0",
     "courseId": "67e7de73e355ca5404744e78",
     "order": 39
   },
   {
-    "title": "Chapter 39: Facebook Ads Setup 7",
-    "description": "Second-to-last guide on ad setup.",
-    "videoUrl": "https://youtu.be/jHbEAuyw65c",
-    "courseId": "67e7de73e355ca5404744e78",
-    "order": 40
-  },
-  {
-    "title": "Chapter 40: Facebook Ads Last Setup 8",
-    "description": "Final module on Facebook ad setup.",
-    "videoUrl": "https://youtu.be/zRIvdwDEcU4",
-    "courseId": "67e7de73e355ca5404744e78",
-    "order": 41
-  },
-  {
-    "title": "Chapter 41: Yanda ake generating leads 1",
-    "description": "Affiliate marketing introduction.",
-    "videoUrl": "https://youtu.be/CkUOodCx0r0",
-    "courseId": "67e7de73e355ca5404744e78",
-    "order": 42
-  },
-  {
-    "title": "Chapter 42: Yanda aka generating leads 2",
+    "title": "Chapter 39: Yanda aka generating leads 2",
     "description": "Affiliate marketing introduction.",
     "videoUrl": "https://youtu.be/zYlmEKCjoI0",
     "courseId": "67e7de73e355ca5404744e78",
-    "order": 43
+    "order": 40
   },
   {
     "title": "PRESENTATION: GARGADI (WARNING)",
@@ -407,50 +386,50 @@
     "order": 15
   },
   {
-    "title": "Chapter 1: Intro to Graphic Design 1",
-    "description": "Introduction to graphic design concepts.",
+    "title": "Chapter 1: Foundations of Graphic Design",
+    "description": "Learn the core principles of graphic design, including balance, contrast, and alignment, to build a strong design foundation.",
     "videoUrl": "https://youtu.be/SHu2JbjuCvo",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 1
   },
   {
-    "title": "Chapter 2: Intro to Graphic Design 2",
-    "description": "Second part of graphic design fundamentals.",
+    "title": "Chapter 2: Understanding Design Elements",
+    "description": "Dive deeper into the use of typography, color theory, and imagery to create compelling and cohesive visuals.",
     "videoUrl": "https://youtu.be/0vvIb60KutY",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 2
   },
   {
-    "title": "Chapter 3: Intro to Graphic Design 3",
-    "description": "Detailed exploration of design principles.",
+    "title": "Chapter 3: Mastering Design Principles",
+    "description": "Explore advanced concepts like hierarchy, spacing, and visual flow to take your design skills to the next level.",
     "videoUrl": "https://youtu.be/O5weLSAkAcE",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 3
   },
   {
-    "title": "Chapter 4: Marketing Platforms",
-    "description": "Overview of platforms for marketing designs.",
+    "title": "Chapter 4: Promoting Your Designs",
+    "description": "Discover the top online platforms for sharing and marketing your graphic design work to attract more clients or attention.",
     "videoUrl": "https://youtu.be/9wlvszUYznE",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 4
   },
   {
-    "title": "Chapter 5: Intro to Flyer Sites",
-    "description": "Introduction to websites for creating flyers.",
+    "title": "Chapter 5: Creating with Flyer Platforms",
+    "description": "Get hands-on with online tools that make flyer design easy and professional—even with zero design experience.",
     "videoUrl": "https://youtu.be/VNyldf1xa5o",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 5
   },
   {
-    "title": "Chapter 6: Birthday Card",
-    "description": "Guide to designing personalized birthday cards.",
+    "title": "Chapter 6: Designing a Birthday Card",
+    "description": "Step-by-step guide to crafting a beautiful, custom birthday card using simple tools and creative ideas.",
     "videoUrl": "https://youtu.be/f_UP3Y-EBJA",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 6
   },
   {
-    "title": "Chapter 7: Wedding Card",
-    "description": "Steps to create customized wedding cards.",
+    "title": "Chapter 7: Designing a Wedding Invitation",
+    "description": "Learn how to design elegant wedding cards that capture the tone and style of the special occasion.",
     "videoUrl": "https://youtu.be/MvewZEEBbaU",
     "courseId": "67e7de73e355ca5404744e79",
     "order": 7
